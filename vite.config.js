@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: './', // Ensures relative asset paths work on GitHub Pages, Vercel, Netlify, and subpaths
+  base: './', // Relative base path works for both GitHub Pages (/tisuta/) and custom domains
   build: {
     outDir: 'dist',
     sourcemap: false
