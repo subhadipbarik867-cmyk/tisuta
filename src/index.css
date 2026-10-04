@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-royal-white: #FAFAFA;
+    --color-ivory: #F5F4F0;
+    --color-champagne-gold: #C5A059;
+    --color-charcoal: #0F0F0F;
+    --color-charcoal-muted: #1A1A1A;
+  }
+
+  body {
+    background-color: var(--color-royal-white);
+    color: var(--color-charcoal);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-serif-luxury {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    letter-spacing: 0.02em;
+  }
+
+  .font-editorial {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+/* Quiet Luxury Custom Utilities */
+.hairline-border {
+  border-width: 1px;
+  border-color: rgba(15, 15, 15, 0.12);
+}
+
+.hairline-gold {
+  border-width: 1px;
+  border-color: rgba(197, 160, 89, 0.3);
+}
+
+.bg-ivory {
+  background-color: #F5F4F0;
+}
+
+.bg-obsidian {
+  background-color: #0F0F0F;
+}
+
+/* Zara & Net-A-Porter High-Fashion Minimalist Buttons */
+.btn-luxury-primary {
+  display: inline-flex;
+  items-center: center;
+  justify-content: center;
+  background-color: #0F0F0F;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid #0F0F0F;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-luxury-primary:hover {
+  background-color: #C5A059;
+  border-color: #C5A059;
+  color: #0F0F0F;
+}
+
+.btn-luxury-outline {
+  display: inline-flex;
+  items-center: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #0F0F0F;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid #0F0F0F;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-luxury-outline:hover {
+  background-color: #0F0F0F;
+  color: #FFFFFF;
+}
+
+.btn-luxury-gold {
+  display: inline-flex;
+  items-center: center;
+  justify-content: center;
+  background-color: #C5A059;
+  color: #0F0F0F;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid #C5A059;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-luxury-gold:hover {
+  background-color: #0F0F0F;
+  border-color: #0F0F0F;
+  color: #C5A059;
+}
+
+/* Glassmorphic Hairline Containers */
+.glass-quiet {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 15, 15, 0.08);
+}
+
+.glass-quiet-dark {
+  background: rgba(15, 15, 15, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAFAFA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0F0F0F;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
