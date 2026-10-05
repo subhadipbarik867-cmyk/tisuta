@@ -72,67 +72,72 @@ export const Footer = ({ onNavigatePage }) => {
 
                     {/* Brand Column */}
                     <div className="lg:col-span-2 space-y-5">
-                        <TisutaLeafEmblem className="h-16 items-start" variant="gold" showText={true} />
+                        <TisutaMonogram variant="light" className="w-[300px] sm:w-[340px] h-[64px]" />
                         <p className="text-xs text-[#FDFBF7]/70 font-light leading-relaxed max-w-sm">
-                            TISUTA Creation is a premier luxury fashion-tech brand weaving timeless Indian artisanal heritage, modern western silhouettes, and AI Virtual Try-On technology.
+                            TISUTA CREATION is an imperial haute couture fashion atelier weaving artisanal heritage with modern women's silhouettes, AI Virtual Try-On, and 24K royale styling.
                         </p>
 
                         {/* Contact details as specified in brand thank you card */}
                         <div className="space-y-2 pt-2 text-xs text-[#FDFBF7]/80">
                             <div className="flex items-center gap-3">
-                                <Mail className="w-4 h-4 text-[#D5B263]" />
-                                <a href="mailto:tisutacreation@gmail.com" className="hover:text-[#D5B263] transition-colors">
+                                <Mail className="w-4 h-4 text-[#D4AF37]" />
+                                <a href="mailto:tisutacreation@gmail.com" className="hover:text-[#F5D77F] transition-colors">
                                     tisutacreation@gmail.com
                                 </a>
                             </div>
                             <div className="flex items-center gap-3">
-                                <Phone className="w-4 h-4 text-[#D5B263]" />
-                                <a href="https://wa.me/919046341544" target="_blank" rel="noreferrer" className="hover:text-[#D5B263] transition-colors">
+                                <Phone className="w-4 h-4 text-[#D4AF37]" />
+                                <a href="https://wa.me/919046341544" target="_blank" rel="noreferrer" className="hover:text-[#F5D77F] transition-colors">
                                     WhatsApp: +91 90463 41544
                                 </a>
                             </div>
                             <div className="flex items-center gap-3">
-                                <Globe className="w-4 h-4 text-[#D5B263]" />
-                                <a href="https://instagram.com/tisuta.creation" target="_blank" rel="noreferrer" className="hover:text-[#D5B263] transition-colors">
+                                <Globe className="w-4 h-4 text-[#D4AF37]" />
+                                <a href="https://instagram.com/tisuta.creation" target="_blank" rel="noreferrer" className="hover:text-[#F5D77F] transition-colors">
                                     Instagram: @tisuta.creation
                                 </a>
                             </div>
                             <div className="flex items-center gap-3">
-                                <Share2 className="w-4 h-4 text-[#D5B263]" />
-                                <span>Facebook: TISUTA Creation</span>
+                                <Share2 className="w-4 h-4 text-[#D4AF37]" />
+                                <span>Facebook: TISUTA CREATION</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Couture Collections */}
                     <div className="space-y-4">
-                        <h4 className="font-serif-luxury text-sm font-semibold tracking-wider text-[#D5B263] uppercase border-b border-[#D5B263]/20 pb-2">
-                            Collections
+                        <h4 className="font-cinzel text-sm font-bold tracking-wider text-[#F5D77F] uppercase border-b border-[#D4AF37]/25 pb-2">
+                            Royale Silhouettes
                         </h4>
                         <ul className="space-y-2.5 text-xs text-[#FDFBF7]/70 font-light">
                             <li>
-                                <button onClick={() => onNavigatePage('catalog', { category: 'ethnic' })} className="hover:text-[#D5B263] transition-colors">
-                                    Chanderi Silk Sarees
+                                <button onClick={() => onNavigatePage('catalog', { category: 'dresses', subCategory: 'minimal-midi' })} className="hover:text-[#F5D77F] transition-colors">
+                                    Minimal Midi & Slip Dresses
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => onNavigatePage('catalog', { category: 'ethnic' })} className="hover:text-[#D5B263] transition-colors">
-                                    Kashmiri Zardozi Anarkalis
+                                <button onClick={() => onNavigatePage('catalog', { category: 'dresses', subCategory: 'short-flared' })} className="hover:text-[#F5D77F] transition-colors">
+                                    A-Line & Flared One Pieces
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => onNavigatePage('catalog', { category: 'dresses' })} className="hover:text-[#D5B263] transition-colors">
-                                    Mulberry Silk Gowns
+                                <button onClick={() => onNavigatePage('catalog', { category: 'ethnic', subCategory: 'ethnic-sets' })} className="hover:text-[#F5D77F] transition-colors">
+                                    3-Piece Royal Ethnic Sets
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => onNavigatePage('catalog', { category: 'coords' })} className="hover:text-[#D5B263] transition-colors">
-                                    Tailored Power Co-ords
+                                <button onClick={() => onNavigatePage('catalog', { category: 'ethnic', subCategory: 'modern-long-kurti' })} className="hover:text-[#F5D77F] transition-colors">
+                                    Modern Long & Short Kurtis
                                 </button>
                             </li>
                             <li>
-                                <button onClick={() => onNavigatePage('catalog', { category: 'outerwear' })} className="hover:text-[#D5B263] transition-colors">
-                                    Virgin Wool Trench Coats
+                                <button onClick={() => onNavigatePage('catalog', { category: 'tops', subCategory: 'net-top' })} className="hover:text-[#F5D77F] transition-colors">
+                                    Sheer Net Er & Crop Tops
+                                </button>
+                            </li>
+                            <li>
+                                <button onClick={() => onNavigatePage('catalog', { category: 'tops', subCategory: 'fitted-basic' })} className="hover:text-[#F5D77F] transition-colors">
+                                    Fitted Basic & Off-Shoulder Tops
                                 </button>
                             </li>
                         </ul>

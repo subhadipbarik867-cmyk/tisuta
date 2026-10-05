@@ -106,45 +106,48 @@ export const Navbar = ({ onNavigatePage, currentPage }) => {
     };
 
     return (
-        <header className="sticky top-0 z-40 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#D5B263]/25 transition-all">
+        <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-[#D4AF37]/35 shadow-[0_10px_35px_rgba(212,175,55,0.08)] transition-all">
             {/* Top Announcement Bar */}
-            <div className="bg-[#121212] text-[#FDFBF7] text-[10px] font-medium tracking-[0.25em] py-2 text-center uppercase border-b border-[#D5B263]/20 flex items-center justify-center gap-4 px-4">
-                <span>Complimentary Express White-Glove Shipping Above ₹5,000</span>
-                <span className="hidden sm:inline text-[#D5B263]">✦</span>
-                <span className="hidden sm:inline">Use Code <strong className="text-[#D5B263] font-bold">TISUTA10</strong> for 10% Off</span>
-                <span className="hidden md:inline text-[#D5B263]">✦</span>
-                <span className="hidden md:inline text-[#D5B263]">3D Virtual Fit AI Activated</span>
+            <div className="bg-gradient-to-r from-[#141210] via-[#2D251A] to-[#141210] text-[#FFF4CC] text-[10.5px] font-semibold tracking-[0.28em] py-2.5 text-center uppercase border-b border-[#D4AF37]/40 flex items-center justify-center gap-4 px-4 shadow-sm">
+                <span className="flex items-center gap-2">
+                    <Sparkles className="w-3 h-3 text-[#D4AF37] animate-pulse" />
+                    <span>Complimentary Express White-Glove Royale Shipping Above ₹2,999</span>
+                </span>
+                <span className="hidden sm:inline text-[#D4AF37]">✦</span>
+                <span className="hidden sm:inline">Royale Privilege Code <strong className="text-[#D4AF37] font-bold underline underline-offset-4 decoration-[#D4AF37]">TISUTA10</strong> for 10% Off</span>
+                <span className="hidden md:inline text-[#D4AF37]">✦</span>
+                <span className="hidden md:inline text-[#D4AF37] font-bold">3D Virtual Fit AI Studio Activated</span>
             </div>
 
             {/* Main Navigation Bar */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[74px] flex items-center justify-between gap-4">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[82px] flex items-center justify-between gap-4">
                 
                 {/* Mobile Menu Toggle */}
                 <button
                     onClick={() => setMobileOpen(!mobileOpen)}
-                    className="lg:hidden p-2 text-[#121212] hover:text-[#D5B263] transition-colors"
+                    className="lg:hidden p-2 text-[#141210] hover:text-[#D4AF37] transition-colors"
                     aria-label="Toggle navigation menu"
                 >
-                    {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                    {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
 
-                {/* Brand Logo & Monogram */}
+                {/* Enhanced Brand Logo: TISUTA CREATION with Royale Crest */}
                 <div
                     onClick={() => onNavigatePage('home')}
-                    className="cursor-pointer flex-shrink-0 hover:opacity-90 transition-opacity"
-                    style={{ width: '180px', height: '42px' }}
+                    className="cursor-pointer flex-shrink-0 hover:scale-105 transition-all duration-300 w-[240px] sm:w-[280px] md:w-[320px] lg:w-[350px] h-[52px] sm:h-[62px] flex items-center"
+                    title="TISUTA CREATION — Haute Couture Royale"
                 >
-                    <TisutaMonogram className="w-full h-full" showSubtitle={true} />
+                    <TisutaMonogram className="w-full h-full" showSubtitle={true} variant="gold" />
                 </div>
 
                 {/* Desktop Category Navigation with Mega Menu */}
-                <nav className="hidden lg:flex items-center gap-7 text-[11px] font-bold uppercase tracking-[0.22em] text-[#121212]/80">
+                <nav className="hidden lg:flex items-center gap-7 text-[11px] font-bold uppercase tracking-[0.22em] text-[#141210]/85">
                     <button
                         onClick={() => onNavigatePage('home')}
-                        className={`py-2 transition-colors hover:text-[#121212] relative ${currentPage === 'home' ? 'text-[#121212]' : ''}`}
+                        className={`py-2 transition-colors hover:text-[#D4AF37] relative font-cinzel ${currentPage === 'home' ? 'text-[#D4AF37] font-extrabold' : ''}`}
                     >
                         Home
-                        {currentPage === 'home' && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D5B263]" />}
+                        {currentPage === 'home' && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />}
                     </button>
 
                     {/* Clothing with Mega Dropdown */}

@@ -1,62 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Play, X, ShoppingBag, ArrowRight, Heart, Volume2, VolumeX } from 'lucide-react';
+import { Sparkles, Play, X, ShoppingBag, ArrowRight, Heart, Crown, Volume2, VolumeX } from 'lucide-react';
 import { useShop } from '../../context/ShopContext';
+import { getImgUrl } from '../../utils/imageUtils';
 
 const STORY_DATA = [
     {
         id: 'story-1',
-        title: 'Paris Runway 2026',
-        author: 'Vogue Spotlight',
-        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
-        media: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=800&auto=format&fit=crop',
-        tag: 'Red Carpet Edits',
-        productName: 'Aurelia Champagne Silk Draped Slip Dress',
-        price: 14999,
-        productId: 'tisuta-001'
+        title: 'Minimal Midi',
+        author: 'Tisuta Atelier',
+        avatar: getImgUrl('/images/products/minimal_midi_1.jpg'),
+        media: getImgUrl('/images/products/minimal_midi_1.jpg'),
+        tag: 'Minimal Midi',
+        productName: 'Minimal Champagne Satin Midi Dress',
+        price: 1499,
+        productId: 'dr-minimal-midi-01'
     },
     {
         id: 'story-2',
-        title: 'Zardozi Heritage',
-        author: 'Artisanal Craft',
-        avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop',
-        media: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=800&auto=format&fit=crop',
-        tag: 'Festive Royal',
-        productName: 'Kashmiri Zardozi Velvet Anarkali Set',
-        price: 28999,
-        productId: 'tisuta-002'
+        title: 'Royal Ethnic',
+        author: 'Heritage Edit',
+        avatar: getImgUrl('/images/products/ethnic_sets_1.jpg'),
+        media: getImgUrl('/images/products/ethnic_sets_1.jpg'),
+        tag: 'Royal Ethnic Set',
+        productName: 'Kashmiri Tilla Embroidered Royal Anarkali Set',
+        price: 1899,
+        productId: 'es-anarkali-01'
     },
     {
         id: 'story-3',
-        title: 'Virtual Fit 3D',
-        author: 'AI Tech Lab',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
-        media: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop',
-        tag: '3D Simulation',
-        productName: 'Verona Sculpted Corset Gown',
-        price: 19999,
-        productId: 'tisuta-006'
+        title: 'Silk Slip',
+        author: 'Couture Slip',
+        avatar: getImgUrl('/images/products/slip_style_1.jpg'),
+        media: getImgUrl('/images/products/slip_style_1.jpg'),
+        tag: 'Slip Style',
+        productName: 'Mulberry Silk Cowl-Neck Slip Dress',
+        price: 1299,
+        productId: 'dr-slip-cowl-01'
     },
     {
         id: 'story-4',
-        title: 'Executive Luxe',
-        author: 'Power Dressing',
-        avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=200&auto=format&fit=crop',
-        media: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=800&auto=format&fit=crop',
-        tag: 'Office Luxe',
-        productName: 'Lumière Ivory Pleated Co-ord Set',
-        price: 11999,
-        productId: 'tisuta-004'
+        title: 'Off-Shoulder',
+        author: 'Runway Bardot',
+        avatar: getImgUrl('/images/products/off_shoulder_1.jpg'),
+        media: getImgUrl('/images/products/off_shoulder_1.jpg'),
+        tag: 'Off-Shoulder Top',
+        productName: 'Bardot Ruched Off-Shoulder Top',
+        price: 699,
+        productId: 'tp-offshoulder-01'
     },
     {
         id: 'story-5',
-        title: 'French Net Couture',
-        author: 'Atelier Tisuta',
-        avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop',
-        media: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800&auto=format&fit=crop',
-        tag: 'Sheer Net Edit',
-        productName: 'Elysian Sheer Embroidered French Illusion Net Top',
-        price: 1499,
-        productId: 'tp-net-sheer'
+        title: 'French Net Top',
+        author: 'Net Er Couture',
+        avatar: getImgUrl('/images/products/net_top_1.jpg'),
+        media: getImgUrl('/images/products/net_top_1.jpg'),
+        tag: 'Net Er Top',
+        productName: 'Sheer French Illusion Net Er Top',
+        price: 799,
+        productId: 'tp-net-sheer-01'
+    },
+    {
+        id: 'story-6',
+        title: 'Peplum Kurti',
+        author: 'Atelier Kurti',
+        avatar: getImgUrl('/images/products/short_kurti_1.jpg'),
+        media: getImgUrl('/images/products/short_kurti_1.jpg'),
+        tag: 'Short Kurti',
+        productName: 'Handblock Printed Flared Peplum Short Kurti',
+        price: 899,
+        productId: 'es-short-kurti-01'
     }
 ];
 
@@ -108,16 +120,18 @@ export const StoryReels = () => {
     const currentProduct = products.find((p) => p.id === activeStory?.productId) || products[0];
 
     return (
-        <div className="w-full bg-[#0A0908] py-4 border-b border-[#D5B263]/20 overflow-x-auto select-none">
+        <div className="w-full bg-white/95 backdrop-blur-xl py-4 border-b border-[#D4AF37]/30 overflow-x-auto select-none shadow-[0_4px_25px_rgba(212,175,55,0.06)]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-4 sm:gap-6 no-scrollbar">
 
-                {/* Studio Badge */}
-                <div className="flex flex-col items-center justify-center flex-shrink-0 pr-3 border-r border-white/10">
-                    <div className="w-12 h-12 rounded-full bg-[#D5B263]/20 border border-[#D5B263] flex items-center justify-center text-[#D5B263] mb-1 shadow-lg">
-                        <Sparkles className="w-6 h-6 animate-pulse" />
+                {/* Studio Royale Badge */}
+                <div className="flex flex-col items-center justify-center flex-shrink-0 pr-4 border-r border-[#D4AF37]/25">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#9E7D23] via-[#D4AF37] to-[#F5D77F] p-0.5 flex items-center justify-center shadow-md">
+                        <div className="w-full h-full bg-[#141210] rounded-full flex items-center justify-center text-[#F5D77F]">
+                            <Crown className="w-5 h-5 animate-pulse" />
+                        </div>
                     </div>
-                    <span className="text-[10px] font-bold text-[#D5B263] tracking-widest uppercase">
-                        STUDIO
+                    <span className="text-[9px] font-cinzel font-black text-[#9E7D23] tracking-[0.25em] uppercase mt-1">
+                        ROYALE
                     </span>
                 </div>
 
@@ -128,19 +142,19 @@ export const StoryReels = () => {
                         onClick={() => handleOpenStory(story, idx)}
                         className="flex flex-col items-center gap-1.5 flex-shrink-0 group focus:outline-none cursor-pointer"
                     >
-                        <div className="relative p-0.5 rounded-full bg-gradient-to-tr from-[#D5B263] via-amber-200 to-[#4A1525] group-hover:scale-105 transition-transform duration-300 shadow-md">
-                            <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden border-2 border-black bg-black p-0.5">
+                        <div className="relative p-[2.5px] rounded-full bg-gradient-to-tr from-[#9E7D23] via-[#F5D77F] to-[#D4AF37] group-hover:scale-108 transition-all duration-300 shadow-[0_4px_14px_rgba(212,175,55,0.3)]">
+                            <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden border-2 border-white bg-white p-0.5 shadow-inner">
                                 <img
                                     src={story.media}
                                     alt={story.title}
                                     className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500"
                                 />
                             </div>
-                            <div className="absolute bottom-0 right-0 p-1 bg-[#D5B263] text-[#121212] rounded-full shadow-md">
-                                <Play className="w-2.5 h-2.5 fill-[#121212]" />
+                            <div className="absolute bottom-0 right-0 p-1 bg-gradient-to-r from-[#D4AF37] to-[#F5D77F] text-[#141210] rounded-full shadow-md border border-white">
+                                <Play className="w-2.5 h-2.5 fill-[#141210]" />
                             </div>
                         </div>
-                        <span className="text-[11px] font-medium text-[#FDFBF7]/90 tracking-wide line-clamp-1 max-w-[70px] text-center">
+                        <span className="text-[11px] font-cinzel font-semibold text-[#141210] tracking-wide line-clamp-1 max-w-[76px] text-center group-hover:text-[#9E7D23] transition-colors">
                             {story.title}
                         </span>
                     </button>

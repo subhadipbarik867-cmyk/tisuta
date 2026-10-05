@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Sparkles, Flame, Tag, Heart, Star, Crown, Compass, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sparkles, Flame, Tag, Star, Crown, Compass, ArrowRight } from 'lucide-react';
 import { useShop } from '../../context/ShopContext';
 import { ProductCard } from '../product/ProductCard';
 
@@ -8,58 +9,58 @@ export const DiscoveryFeed = ({ onSelectProduct, onNavigatePage }) => {
     const [activePill, setActivePill] = useState('hot');
 
     const pills = [
-        { id: 'hot', label: "What's Hot", icon: Flame },
-        { id: 'under999', label: 'Under ₹999', icon: Tag },
-        { id: 'under1499', label: 'Under ₹1,499', icon: Tag },
-        { id: 'minimal', label: 'Minimal Midi & Slip', icon: Sparkles },
-        { id: 'ethnic', label: 'Royal Ethnic & Sets', icon: Crown },
-        { id: 'best-rated', label: 'Most Loved (4.9+ ★)', icon: Star },
-        { id: 'luxury', label: 'Haute Runway Luxe', icon: Crown }
+        { id: 'hot', label: "Royal Highlights", icon: Flame },
+        { id: 'under799', label: 'Under ₹799', icon: Tag },
+        { id: 'under1199', label: 'Under ₹1,199', icon: Tag },
+        { id: 'dresses', label: 'Midi, Slip & Flared', icon: Sparkles },
+        { id: 'ethnic', label: 'Kurtis & Royal Sets', icon: Crown },
+        { id: 'tops', label: 'Fitted, Off-Shoulder & Net', icon: Sparkles },
+        { id: 'best-rated', label: 'Imperial 5-Star (4.8+ ★)', icon: Star }
     ];
 
     const filtered = products.filter(p => {
         if (activePill === 'hot') return p.isNewArrival || p.rating >= 4.85;
-        if (activePill === 'under999') return p.price <= 999;
-        if (activePill === 'under1499') return p.price <= 1499;
-        if (activePill === 'minimal') return p.subCategory === 'midi' || p.subCategory === 'slip';
+        if (activePill === 'under799') return p.price <= 799;
+        if (activePill === 'under1199') return p.price <= 1199;
+        if (activePill === 'dresses') return p.category === 'dresses';
         if (activePill === 'ethnic') return p.category === 'ethnic';
-        if (activePill === 'best-rated') return p.rating >= 4.9;
-        if (activePill === 'luxury') return p.price >= 5000;
+        if (activePill === 'tops') return p.category === 'tops';
+        if (activePill === 'best-rated') return p.rating >= 4.8;
         return true;
     });
 
     return (
-        <section className="py-20 bg-[#FDFBF7] text-[#121212]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <section className="py-24 bg-gradient-to-b from-[#FFFFFF] via-[#FAF8F5] to-[#FFFFFF] text-[#141210]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
                 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#D5B263]/30 pb-6">
-                    <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                            <Compass className="w-4 h-4 text-[#D5B263]" />
-                            <span className="text-[11px] font-bold tracking-[0.25em] text-[#D5B263] uppercase">
-                                Discovery Engine
+                <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#D4AF37]/35 pb-8">
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-2.5">
+                            <Crown className="w-4 h-4 text-[#D4AF37]" />
+                            <span className="text-[11px] font-cinzel font-bold tracking-[0.28em] text-[#9E7D23] uppercase">
+                                Imperial Discovery Engine
                             </span>
                         </div>
-                        <h2 className="font-serif-luxury text-4xl sm:text-5xl text-[#121212] font-bold">
-                            Explore Fashion Beyond Shopping
+                        <h2 className="font-cinzel text-3xl sm:text-5xl text-[#141210] font-black tracking-tight">
+                            Explore Fashion <span className="gold-text-gradient">Beyond Limits</span>
                         </h2>
-                        <p className="text-xs sm:text-sm text-[#121212]/60 font-light max-w-md">
-                            Curated feeds designed to inspire — from sub-₹999 essentials to multi-lakh Paris couture.
+                        <p className="text-xs sm:text-sm text-[#141210]/70 font-light max-w-md">
+                            Curated edits designed for royal elegance — pure 12 women's silhouettes crafted in breathable luxury fabrics from ₹499 to ₹1,899.
                         </p>
                     </div>
 
                     <button
                         onClick={() => onNavigatePage('catalog', { category: 'all' })}
-                        className="mt-4 md:mt-0 text-xs font-bold uppercase tracking-widest text-[#D5B263] hover:text-[#121212] flex items-center gap-1.5 transition-colors"
+                        className="mt-4 md:mt-0 text-xs font-cinzel font-bold uppercase tracking-widest text-[#9E7D23] hover:text-[#141210] flex items-center gap-2 transition-colors group cursor-pointer"
                     >
-                        <span>View All Categories</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
+                        <span>View All Silhouettes</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                 </div>
 
                 {/* Filter Pills Bar */}
-                <div className="flex items-center gap-2.5 overflow-x-auto pb-3 scrollbar-none">
+                <div className="flex items-center gap-3 overflow-x-auto pb-3 no-scrollbar">
                     {pills.map(p => {
                         const Icon = p.icon;
                         const isSelected = activePill === p.id;
@@ -67,10 +68,10 @@ export const DiscoveryFeed = ({ onSelectProduct, onNavigatePage }) => {
                             <button
                                 key={p.id}
                                 onClick={() => setActivePill(p.id)}
-                                className={`flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap transition-all cursor-pointer ${
+                                className={`flex items-center gap-2 px-5 py-3 rounded-full text-xs font-cinzel font-bold tracking-wider whitespace-nowrap transition-all duration-300 cursor-pointer ${
                                     isSelected
-                                        ? 'bg-[#121212] text-[#D5B263] shadow-md border border-[#121212]'
-                                        : 'bg-white text-[#121212]/70 border border-[#D5B263]/30 hover:border-[#D5B263] hover:text-[#121212]'
+                                        ? 'bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#D4AF37] text-[#141210] shadow-[0_6px_20px_rgba(212,175,55,0.35)] scale-105 border border-[#F5D77F]'
+                                        : 'bg-white text-[#141210]/75 border border-[#D4AF37]/30 hover:border-[#D4AF37] hover:text-[#141210] hover:shadow-md'
                                 }`}
                             >
                                 <Icon className="w-3.5 h-3.5" />
@@ -80,16 +81,29 @@ export const DiscoveryFeed = ({ onSelectProduct, onNavigatePage }) => {
                     })}
                 </div>
 
-                {/* Product Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {filtered.slice(0, 8).map(prod => (
-                        <ProductCard
-                            key={prod.id}
-                            product={prod}
-                            onSelectProduct={onSelectProduct}
-                        />
-                    ))}
-                </div>
+                {/* Product Grid with Framer Motion AnimatePresence */}
+                <motion.div 
+                    layout
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                >
+                    <AnimatePresence>
+                        {filtered.slice(0, 8).map(prod => (
+                            <motion.div
+                                key={prod.id}
+                                layout
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                transition={{ duration: 0.4 }}
+                            >
+                                <ProductCard
+                                    product={prod}
+                                    onSelectProduct={onSelectProduct}
+                                />
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </motion.div>
 
             </div>
         </section>

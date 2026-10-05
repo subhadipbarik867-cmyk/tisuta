@@ -18,40 +18,43 @@ export const NewArrivals = ({ onSelectProduct, onNavigatePage }) => {
     };
 
     return (
-        <section className="py-24 bg-[#FDFBF7] text-[#121212] overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <section className="py-24 bg-[#FFFFFF] text-[#141210] overflow-hidden relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
                 {/* Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#D5B263]/30 pb-6">
-                    <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                            <div className="h-0.5 w-8 bg-[#D5B263]" />
-                            <span className="text-[11px] font-bold tracking-[0.25em] text-[#D5B263] uppercase">Runway Drops 2026</span>
+                <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#D4AF37]/35 pb-8">
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-2.5">
+                            <div className="h-0.5 w-10 bg-gradient-to-r from-[#D4AF37] to-[#F5D77F]" />
+                            <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+                            <span className="text-[11px] font-cinzel font-bold tracking-[0.28em] text-[#9E7D23] uppercase">
+                                Royale Couture Drops 2026
+                            </span>
                         </div>
-                        <h2 className="font-serif-luxury text-4xl sm:text-5xl text-[#121212] font-bold">
-                            New Arrivals & Editorial Trending
+                        <h2 className="font-cinzel text-3xl sm:text-5xl text-[#141210] font-black tracking-tight">
+                            New Arrivals & <span className="gold-text-gradient">Editorial Trending</span>
                         </h2>
-                        <p className="text-xs sm:text-sm text-[#121212]/60 font-light max-w-md">
-                            Freshly crafted from master ateliers across Paris and India — available in limited boutique quantities.
+                        <p className="text-xs sm:text-sm text-[#141210]/70 font-light max-w-md">
+                            Freshly crafted from master ateliers — available in limited boutique quantities with express insured delivery.
                         </p>
                     </div>
 
                     <div className="flex items-center gap-3 mt-6 md:mt-0">
                         <button
                             onClick={() => scroll('left')}
-                            className="p-3 rounded-xl bg-white border border-[#D5B263]/40 text-[#121212] hover:bg-[#D5B263] hover:text-[#121212] transition-colors shadow-sm cursor-pointer"
+                            className="p-3.5 rounded-2xl bg-white border border-[#D4AF37]/40 text-[#141210] hover:bg-[#D4AF37] hover:text-[#141210] transition-all shadow-sm hover:shadow-[0_4px_16px_rgba(212,175,55,0.25)] cursor-pointer"
                         >
                             <ChevronLeft className="w-5 h-5" />
                         </button>
                         <button
                             onClick={() => scroll('right')}
-                            className="p-3 rounded-xl bg-white border border-[#D5B263]/40 text-[#121212] hover:bg-[#D5B263] hover:text-[#121212] transition-colors shadow-sm cursor-pointer"
+                            className="p-3.5 rounded-2xl bg-white border border-[#D4AF37]/40 text-[#141210] hover:bg-[#D4AF37] hover:text-[#141210] transition-all shadow-sm hover:shadow-[0_4px_16px_rgba(212,175,55,0.25)] cursor-pointer"
                         >
                             <ChevronRight className="w-5 h-5" />
                         </button>
                         <button
                             onClick={() => onNavigatePage('catalog', { category: 'all' })}
-                            className="hidden md:flex items-center gap-2 px-6 py-3 bg-[#121212] text-[#D5B263] text-xs font-bold tracking-widest uppercase rounded-xl hover:bg-[#D5B263] hover:text-[#121212] transition-colors cursor-pointer shadow-md"
+                            className="hidden md:flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#D4AF37] text-[#141210] text-xs font-cinzel font-black tracking-widest uppercase rounded-2xl hover:scale-105 transition-all cursor-pointer shadow-[0_6px_20px_rgba(212,175,55,0.3)] border border-[#F5D77F]"
                         >
                             <span>View All Drops</span>
                             <ArrowRight className="w-4 h-4" />

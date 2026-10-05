@@ -2,11 +2,13 @@
 
 @layer base {
   :root {
-    --color-royal-white: #FFFFFF;
-    --color-ivory: #FDFBF7;
-    --color-charcoal: #121212;
-    --color-gold-accent: #D5B263;
-    --color-gold-light: #E5C880;
+    --color-royale-white: #FFFFFF;
+    --color-royale-cream: #FAF8F5;
+    --color-royale-ivory: #FDFBF7;
+    --color-royale-gold: #D4AF37;
+    --color-royale-gold-bright: #F5D77F;
+    --color-royale-gold-dark: #9E7D23;
+    --color-royale-charcoal: #141210;
   }
 
   html {
@@ -14,27 +16,213 @@
   }
 
   body {
-    background-color: var(--color-ivory);
-    color: var(--color-charcoal);
+    background-color: #FAF8F5;
+    color: #141210;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
     letter-spacing: -0.01em;
   }
 
-  h1,
-  h2,
-  h3,
-  .font-serif-luxury {
-    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-    letter-spacing: 0.02em;
+  h1, h2, h3, .font-serif-luxury {
+    font-family: 'Cinzel', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: 0.03em;
   }
 
-  .font-editorial {
-    font-family: 'Cormorant Garamond', serif;
+  .font-cormorant {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
   }
 }
 
-/* GPU Accelerated Image Micro-Zoom Engine */
+/* ✦ Royale Gold Metallic Gradient Text ✦ */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #FFF5D1 0%, #D4AF37 40%, #F8E7B2 65%, #9E7D23 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.25));
+}
+
+.gold-text-bright {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F5D77F 45%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ✦ Royale Glassmorphism White & Gold ✦ */
+.glass-royale-white {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 12px 35px -8px rgba(212, 175, 55, 0.15), 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.glass-royale-dark {
+  background: rgba(18, 16, 14, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 15px 45px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.18);
+}
+
+.glass-royale-gold {
+  background: linear-gradient(135deg, rgba(255, 248, 220, 0.92) 0%, rgba(250, 240, 202, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+/* ✦ Gold Foil Shimmer Sweep ✦ */
+@keyframes goldShimmerSweep {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(250%) rotate(25deg);
+  }
+}
+
+.shimmer-gold-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-gold-sweep::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 245, 210, 0.45) 50%,
+      transparent 100%);
+  animation: goldShimmerSweep 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* ✦ Continuous Marquee Ticker ✦ */
+@keyframes royalTicker {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-royal-ticker {
+  display: flex;
+  width: max-content;
+  animation: royalTicker 32s linear infinite;
+}
+
+.animate-royal-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* ✦ Floating Particles & Glow Keyframes ✦ */
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-16px) rotate(180deg) scale(1.15);
+    opacity: 1;
+  }
+}
+
+.animate-float-particle {
+  animation: floatParticle 5s ease-in-out infinite;
+}
+
+@keyframes pulseGoldHalo {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.25), inset 0 0 15px rgba(212, 175, 55, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), inset 0 0 25px rgba(212, 175, 55, 0.3);
+  }
+}
+
+.animate-pulse-gold-halo {
+  animation: pulseGoldHalo 3s ease-in-out infinite;
+}
+
+/* ✦ Figma-Style Spring Tilt Card ✦ */
+.figma-spring-card {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.figma-spring-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 24px 50px -12px rgba(212, 175, 55, 0.28), 0 0 0 1px rgba(212, 175, 55, 0.5);
+}
+
+/* ✦ Royale Buttons ✦ */
+.btn-royale-gold {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #E6C466 0%, #D4AF37 50%, #B88B22 100%);
+  color: #141210;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding: 1.1rem 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid #FFE79E;
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.btn-royale-gold:hover {
+  background: linear-gradient(135deg, #FFF0B8 0%, #E6C466 50%, #D4AF37 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 40px rgba(212, 175, 55, 0.55), inset 0 1px 0 #FFFFFF;
+}
+
+.btn-royale-white {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: #FFFFFF;
+  color: #141210;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding: 1.1rem 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06), 0 0 15px rgba(212, 175, 55, 0.15);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-royale-white:hover {
+  border-color: #D4AF37;
+  color: #9E7D23;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.25);
+}
+
+/* ✦ Image Zoom & Luxury Depth ✦ */
 .img-zoom-container {
   overflow: hidden;
   position: relative;
@@ -47,212 +235,27 @@
 }
 
 .img-zoom-container:hover .img-luxury-zoom {
-  transform: scale(1.06);
-  filter: brightness(1.02);
+  transform: scale(1.07);
+  filter: brightness(1.04) contrast(1.02);
 }
 
-/* Luxury Shimmer & Glow Effects */
-@keyframes shimmerSweep {
-  0% {
-    transform: translateX(-100%) rotate(25deg);
-  }
-
-  100% {
-    transform: translateX(200%) rotate(25deg);
-  }
-}
-
-.shimmer-sweep {
-  position: relative;
-  overflow: hidden;
-}
-
-.shimmer-sweep::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.25) 50%,
-      transparent 100%);
-  animation: shimmerSweep 3.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-
-/* Keyframe Micro-Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes floatSlow {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-@keyframes pulseGlow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 15px rgba(213, 178, 99, 0.2);
-  }
-
-  50% {
-    box-shadow: 0 0 30px rgba(213, 178, 99, 0.5);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-float-slow {
-  animation: floatSlow 4s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-/* Museum-Grade Minimalist Utilities & Cards */
-.hairline-border {
-  border-width: 1px;
-  border-color: rgba(213, 178, 99, 0.25);
-}
-
-.bg-ivory {
-  background-color: #FDFBF7;
-}
-
-.bg-obsidian {
-  background-color: #121212;
-}
-
-/* Ultra-minimalist Noir & Gold Buttons */
-.btn-luxury-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #121212;
-  color: #D5B263;
-  font-weight: 700;
-  font-size: 0.70rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  padding: 1rem 2.25rem;
-  border: 1px solid #D5B263;
-  border-radius: 0.75rem;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.btn-luxury-primary:hover {
-  background-color: #D5B263;
-  color: #121212;
-  box-shadow: 0 8px 30px rgba(213, 178, 99, 0.3);
-  transform: translateY(-2px);
-}
-
-.btn-luxury-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  color: #121212;
-  font-weight: 600;
-  font-size: 0.70rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  padding: 1rem 2.25rem;
-  border: 1px solid rgba(18, 18, 18, 0.2);
-  border-radius: 0.75rem;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-}
-
-.btn-luxury-outline:hover {
-  border-color: #D5B263;
-  color: #D5B263;
-  background-color: rgba(18, 18, 18, 0.03);
-  transform: translateY(-2px);
-}
-
-/* Glassmorphism Classes */
-.glass-luxury {
-  background: rgba(253, 251, 247, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(213, 178, 99, 0.3);
-}
-
-.glass-dark {
-  background: rgba(18, 18, 18, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(213, 178, 99, 0.3);
-}
-
-/* Card Micro-Elevations */
-.card-luxury-hover {
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.card-luxury-hover:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px -15px rgba(213, 178, 99, 0.2);
-}
-
-/* Sleek Luxury Gold Scrollbar */
+/* ✦ Royale Gold Scrollbar ✦ */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FDFBF7;
+  background: #FAF8F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D5B263;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #E6C466 0%, #D4AF37 100%);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #121212;
+  background: #9E7D23;
 }
 
 #root {

@@ -38,25 +38,25 @@ export const PersonalizedStyleQuiz = ({ onSelectProduct }) => {
     const recommendedProducts = products.filter(p => {
         if (answers.style === 'Royal Ethnic Couture') return p.category === 'ethnic';
         if (answers.style === 'Evening Glamour') return p.category === 'dresses';
-        if (answers.style === 'Minimal Luxury') return p.category === 'coords' || p.category === 'dresses';
+        if (answers.style === 'Minimal Luxury') return p.category === 'dresses' || p.category === 'tops';
         return true;
     }).slice(0, 3);
 
     return (
-        <section className="py-24 bg-[#FDFBF7] text-[#121212]">
+        <section className="py-24 bg-gradient-to-b from-[#FFFFFF] via-[#FAF8F5] to-[#FFFFFF] text-[#141210]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Section Title */}
-                <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-                    <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#121212] text-[#D5B263] text-xs font-bold uppercase tracking-widest">
+                <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F5D77F] text-[#141210] text-xs font-cinzel font-black uppercase tracking-widest shadow-md">
                         <Sparkles className="w-3.5 h-3.5" />
-                        <span>AI Styling Intelligence</span>
+                        <span>AI Styling Intelligence • Royale Atelier</span>
                     </div>
-                    <h2 className="font-serif-luxury text-3xl sm:text-5xl text-[#121212]">
-                        MADE FOR YOUR STYLE
+                    <h2 className="font-cinzel text-3xl sm:text-5xl text-[#141210] font-black tracking-tight">
+                        CRAFTED FOR YOUR <span className="gold-text-gradient">SIGNATURE FIT</span>
                     </h2>
-                    <p className="text-xs sm:text-sm text-[#121212]/70 font-light">
-                        Tell us your body profile & occasion preference to receive curated high-fashion suggestions.
+                    <p className="text-xs sm:text-sm text-[#141210]/70 font-light">
+                        Select your silhouette profile & occasion preference to receive bespoke high-fashion couture recommendations.
                     </p>
                 </div>
 
