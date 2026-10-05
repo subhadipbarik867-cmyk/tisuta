@@ -39,9 +39,9 @@ function MainAppContent() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSelectProduct = (product) => {
+  const handleSelectProduct = (product, initialMode = 'single') => {
     setSelectedProduct(product);
-    handleNavigatePage('product-detail');
+    handleNavigatePage('product-detail', { initialMode });
   };
 
   return (
@@ -83,6 +83,7 @@ function MainAppContent() {
         {currentPage === 'product-detail' && selectedProduct && (
           <ProductDetailPage
             product={selectedProduct}
+            initialMode={pageParams.initialMode || 'single'}
             onSelectProduct={handleSelectProduct}
             onNavigatePage={handleNavigatePage}
           />

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
-    Heart, Sparkles, Check, ShoppingBag, MapPin, Play, Pause, Video, 
+    Heart, Sparkles, Check, ShoppingBag, MapPin, Play, Pause, 
     RotateCw, RotateCcw, Star, ShieldCheck, Truck, ArrowRight, ArrowLeft, 
     Share2, SlidersHorizontal, ChevronRight, ChevronLeft, CheckCircle2, 
     MessageCircle, Maximize2, ZoomIn, ZoomOut, Ruler, Info, Layers, 
@@ -10,8 +10,9 @@ import { useShop } from '../context/ShopContext';
 import { ProductCard } from '../components/product/ProductCard';
 import { CustomerReviewsSection } from '../components/product/CustomerReviewsSection';
 import { getImgUrl } from '../utils/imageUtils';
+import { ThreeDBodyAvatar } from '../components/virtualFit/ThreeDBodyAvatar';
 
-export const ProductDetailPage = ({ product, onSelectProduct, onNavigatePage }) => {
+export const ProductDetailPage = ({ product, onSelectProduct, onNavigatePage, initialMode = 'single' }) => {
     const {
         addToCart,
         toggleWishlist,
@@ -34,8 +35,8 @@ export const ProductDetailPage = ({ product, onSelectProduct, onNavigatePage }) 
         partner: 'Blue Dart Luxury White Glove Express'
     });
 
-    // Gallery Modes: 'single' (Focus with Loupe), 'quad' (4K Multi-Panel Grid), 'turntable' (360 Orbit), 'video' (Runway)
-    const [galleryMode, setGalleryMode] = useState('single');
+    // Gallery Modes: 'single' (Focus Loupe), 'avatar3d' (3D Avatar), 'turntable' (360 Orbit), 'quad' (4K Multi-Panel)
+    const [galleryMode, setGalleryMode] = useState(initialMode || 'single');
     const [loupeFactor, setLoupeFactor] = useState(2.5); // 2.5x or 4.0x
     const [isHoveringImage, setIsHoveringImage] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
@@ -54,7 +55,6 @@ export const ProductDetailPage = ({ product, onSelectProduct, onNavigatePage }) 
     const [copiedShare, setCopiedShare] = useState(false);
 
     const imageContainerRef = useRef(null);
-    const videoRef = useRef(null);
     const autoSpinTimerRef = useRef(null);
 
     const wishlisted = isWishlisted(product.id);
@@ -184,56 +184,54 @@ export const ProductDetailPage = ({ product, onSelectProduct, onNavigatePage }) 
                         
                         {/* High-Resolution Gallery Mode Bar */}
                         <div className="flex flex-wrap items-center justify-between border-b border-[#D5B263]/25 pb-3 gap-2">
-                            <div className="flex items-center gap-2 sm:gap-4 text-xs font-bold uppercase tracking-wider">
+                            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs font-bold uppercase tracking-wider">
                                 <button
                                     onClick={() => setGalleryMode('single')}
-                                    className={`py-1 flex items-center gap-1.5 transition-all ${
+                                    className={`py-1.5 px-3 rounded-xl flex items-center gap-1.5 transition-all cursor-pointer ${
                                         galleryMode === 'single'
-                                            ? 'text-[#121212] border-b-2 border-[#121212]'
-                                            : 'text-[#121212]/40 hover:text-[#121212]'
+                                            ? 'bg-[#121212] text-[#F5D77F] shadow-sm font-cinzel'
+                                            : 'text-[#121212]/60 hover:text-[#121212] hover:bg-stone-100'
                                     }`}
                                 >
                                     <Eye className="w-3.5 h-3.5 text-[#D5B263]" />
-                                    <span>Single Focus (Loupe)</span>
+                                    <span>Studio Loupe</span>
                                 </button>
 
                                 <button
-                                    onClick={() => setGalleryMode('quad')}
-                                    className={`py-1 flex items-center gap-1.5 transition-all ${
-                                        galleryMode === 'quad'
-                                            ? 'text-[#121212] border-b-2 border-[#121212]'
-                                            : 'text-[#121212]/40 hover:text-[#121212]'
+                                    onClick={() => setGalleryMode('avatar3d')}
+                                    className={`py-1.5 px-3 rounded-xl flex items-center gap-1.5 transition-all cursor-pointer ${
+                                        galleryMode === 'avatar3d'
+                                            ? 'bg-gradient-to-r from-[#D4AF37] to-[#B88B22] text-[#121212] shadow-md font-extrabold font-cinzel'
+                                            : 'bg-[#121212]/5 text-[#9E7D23] hover:bg-[#D4AF37]/20 border border-[#D4AF37]/40 font-cinzel'
                                     }`}
                                 >
-                                    <Grid className="w-3.5 h-3.5 text-[#D5B263]" />
-                                    <span>4K Multi-Panels ({product.images?.length || 5})</span>
+                                    <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+                                    <span>👗 3D Avatar Fit</span>
                                 </button>
 
                                 <button
                                     onClick={() => setGalleryMode('turntable')}
-                                    className={`py-1 flex items-center gap-1.5 transition-all ${
+                                    className={`py-1.5 px-2.5 rounded-xl flex items-center gap-1.5 transition-all cursor-pointer ${
                                         galleryMode === 'turntable'
-                                            ? 'text-[#121212] border-b-2 border-[#121212]'
-                                            : 'text-[#121212]/40 hover:text-[#121212]'
+                                            ? 'bg-[#121212] text-[#F5D77F] shadow-sm font-cinzel'
+                                            : 'text-[#121212]/60 hover:text-[#121212] hover:bg-stone-100'
                                     }`}
                                 >
                                     <Compass className="w-3.5 h-3.5 text-[#D5B263]" />
-                                    <span>360° Studio Orbit</span>
+                                    <span>360° Orbit</span>
                                 </button>
 
-                                {product.videoUrl && (
-                                    <button
-                                        onClick={() => setGalleryMode('video')}
-                                        className={`py-1 flex items-center gap-1.5 transition-all ${
-                                            galleryMode === 'video'
-                                                ? 'text-[#121212] border-b-2 border-[#121212]'
-                                                : 'text-[#121212]/40 hover:text-[#121212]'
-                                        }`}
-                                    >
-                                        <Play className="w-3 h-3 fill-current text-[#D5B263]" />
-                                        <span>Runway Walk</span>
-                                    </button>
-                                )}
+                                <button
+                                    onClick={() => setGalleryMode('quad')}
+                                    className={`py-1.5 px-2.5 rounded-xl flex items-center gap-1.5 transition-all cursor-pointer ${
+                                        galleryMode === 'quad'
+                                            ? 'bg-[#121212] text-[#F5D77F] shadow-sm font-cinzel'
+                                            : 'text-[#121212]/60 hover:text-[#121212] hover:bg-stone-100'
+                                    }`}
+                                >
+                                    <Grid className="w-3.5 h-3.5 text-[#D5B263]" />
+                                    <span>Multi-Panels ({product.images?.length || 5})</span>
+                                </button>
                             </div>
 
                             <button
@@ -467,21 +465,36 @@ export const ProductDetailPage = ({ product, onSelectProduct, onNavigatePage }) 
                             </div>
                         )}
 
-                        {/* MODE 4: RUNWAY VIDEO */}
-                        {galleryMode === 'video' && product.videoUrl && (
-                            <div className="aspect-[3/4.2] bg-[#121212] rounded-3xl overflow-hidden relative shadow-xl border border-[#D5B263]/30">
-                                <video
-                                    ref={videoRef}
-                                    src={product.videoUrl}
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
-                                    className="w-full h-full object-cover"
-                                />
-                                <div className="absolute top-4 left-4 px-3 py-1 bg-black/75 text-[#D5B263] text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-md">
-                                    Runway Walk 4K Motion
+                        {/* MODE: 3D AVATAR & LIVE DRAPE */}
+                        {galleryMode === 'avatar3d' && (
+                            <div className="bg-[#0C0B0A] rounded-3xl border-2 border-[#D4AF37]/50 p-4 sm:p-6 shadow-2xl space-y-4">
+                                <div className="flex items-center justify-between border-b border-[#D4AF37]/30 pb-3">
+                                    <div className="flex items-center gap-2">
+                                        <Sparkles className="w-4 h-4 text-[#D4AF37] animate-pulse" />
+                                        <span className="font-cinzel text-sm sm:text-base font-bold text-[#F5D77F]">
+                                            3D Interactive Avatar & Garment Drape
+                                        </span>
+                                    </div>
+                                    <button
+                                        onClick={() => setGalleryMode('single')}
+                                        className="px-3.5 py-1.5 rounded-full bg-[#141210] hover:bg-[#D4AF37] text-[#F5D77F] hover:text-black border border-[#D4AF37]/40 text-[10px] font-cinzel font-bold flex items-center gap-1.5 transition-all shadow-md cursor-pointer"
+                                    >
+                                        <Eye className="w-3 h-3" />
+                                        <span>Back to Loupe</span>
+                                    </button>
                                 </div>
+                                <ThreeDBodyAvatar
+                                    garmentColor={selectedColor}
+                                    garmentImage={currentImgUrl}
+                                    garmentSilhouette={product.subCategory || 'minimal-midi'}
+                                    garmentName={product.name}
+                                    height={product.modelStats?.height || '168 cm'}
+                                    bust="34 in"
+                                    waist="27 in"
+                                    hips="36 in"
+                                    fitScore={98}
+                                    showControls={true}
+                                />
                             </div>
                         )}
 
@@ -570,6 +583,51 @@ export const ProductDetailPage = ({ product, onSelectProduct, onNavigatePage }) 
                             <span className="text-[10px] text-[#121212]/50 block">
                                 Inclusive of all GST taxes & White-Glove Atelier Inspection
                             </span>
+
+                            {/* Visual Atelier Feature Direct Cards */}
+                            <div className="grid grid-cols-2 gap-2.5 pt-3">
+                                <button
+                                    onClick={() => {
+                                        setGalleryMode('single');
+                                        window.scrollTo({ top: 120, behavior: 'smooth' });
+                                    }}
+                                    className="p-3 rounded-2xl bg-gradient-to-br from-[#141210] to-[#25201A] text-left border border-[#D4AF37]/50 hover:border-[#D4AF37] transition-all hover:scale-[1.02] shadow-md group cursor-pointer"
+                                >
+                                    <div className="flex items-center justify-between text-[#F5D77F] mb-1">
+                                        <span className="font-cinzel text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                                            <Eye className="w-3 h-3 text-[#D4AF37]" />
+                                            <span>Macro Loupe</span>
+                                        </span>
+                                        <span className="text-[8px] bg-[#D4AF37] text-black font-bold px-1.5 py-0.5 rounded-full font-mono">
+                                            {loupeFactor}x UHD
+                                        </span>
+                                    </div>
+                                    <p className="text-[10px] text-white/80 font-medium">
+                                        Inspect Weave & Precision Seams
+                                    </p>
+                                </button>
+
+                                <button
+                                    onClick={() => {
+                                        setGalleryMode('avatar3d');
+                                        window.scrollTo({ top: 120, behavior: 'smooth' });
+                                    }}
+                                    className="p-3 rounded-2xl bg-white text-left border border-[#D4AF37]/50 hover:border-[#D4AF37] transition-all hover:scale-[1.02] shadow-md group cursor-pointer"
+                                >
+                                    <div className="flex items-center justify-between text-[#141210] mb-1">
+                                        <span className="font-cinzel text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                                            <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+                                            <span>3D Avatar Fit</span>
+                                        </span>
+                                        <span className="text-[8px] bg-[#D4AF37]/20 text-[#9E7D23] font-bold px-1.5 py-0.5 rounded-full font-mono">
+                                            360°
+                                        </span>
+                                    </div>
+                                    <p className="text-[10px] text-stone-600 font-medium">
+                                        Interactive Silhouette & Stress Heatmap
+                                    </p>
+                                </button>
+                            </div>
                         </div>
 
                         {/* Color Selector */}

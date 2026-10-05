@@ -368,6 +368,7 @@ export const ShopProvider = ({ children }) => {
     const [isSizeAdvisorOpen, setIsSizeAdvisorOpen] = useState(false);
     const [sizeAdvisorProduct, setSizeAdvisorProduct] = useState(null);
     const [quickViewProduct, setQuickViewProduct] = useState(null);
+    const [quickViewInitialMode, setQuickViewInitialMode] = useState('photos');
     const [isStylistOpen, setIsStylistOpen] = useState(false);
     const [isStyleboardOpen, setIsStyleboardOpen] = useState(false);
     const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -522,8 +523,14 @@ export const ShopProvider = ({ children }) => {
         setIsSizeAdvisorOpen(true);
     };
 
-    const openQuickView = (product) => setQuickViewProduct(product);
-    const closeQuickView = () => setQuickViewProduct(null);
+    const openQuickView = (product, initialMode = 'photos') => {
+        setQuickViewProduct(product);
+        setQuickViewInitialMode(initialMode);
+    };
+    const closeQuickView = () => {
+        setQuickViewProduct(null);
+        setQuickViewInitialMode('photos');
+    };
 
     // ORDER CREATION (Supports both signature styles cleanly)
     const createOrder = (param1, param2) => {
@@ -703,6 +710,7 @@ export const ShopProvider = ({ children }) => {
             openSizeAdvisor,
             quickViewProduct,
             setQuickViewProduct,
+            quickViewInitialMode,
             isQuickViewOpen: Boolean(quickViewProduct),
             openQuickView,
             closeQuickView,
