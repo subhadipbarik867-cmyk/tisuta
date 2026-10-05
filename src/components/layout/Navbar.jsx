@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { 
     Search, User, Heart, ShoppingBag, Menu, Sparkles, LayoutDashboard, 
-    SlidersHorizontal, Bell, Palette, Bot, X, ChevronDown, ArrowRight 
+    SlidersHorizontal, Bell, Palette, Bot, X, ChevronDown, ArrowRight, Crown 
 } from 'lucide-react';
 import { TisutaMonogram } from '../brand/TisutaMonogram';
 import { useShop } from '../../context/ShopContext';
+import { getImgUrl } from '../../utils/imageUtils';
 
 export const Navbar = ({ onNavigatePage, currentPage }) => {
     const {
@@ -38,7 +39,8 @@ export const Navbar = ({ onNavigatePage, currentPage }) => {
 
     const megaMenus = {
         clothing: {
-            title: 'Women Couture & Prêt-à-Porter',
+            title: 'Haute Couture & Prêt-à-Porter',
+            badge: 'ALL 12 SILHOUETTES',
             sections: [
                 {
                     heading: 'Dresses & One-Pieces',
@@ -69,38 +71,155 @@ export const Navbar = ({ onNavigatePage, currentPage }) => {
                 }
             ],
             promo: {
-                title: 'The Alix Minimal Midi',
-                subtitle: 'Double silk georgette in pearl ivory & noir',
-                image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=90&w=800&auto=format&fit=crop',
+                title: 'Champagne Minimal Midi Dress',
+                subtitle: 'Double silk georgette with tailored cowl neckline',
+                price: '₹1,499',
+                image: getImgUrl('/images/products/minimal_midi_1.jpg'),
                 action: () => handleCategoryClick('dresses', 'minimal-midi')
             }
         },
         trending: {
             title: 'Trending Editions & Curated Edits',
+            badge: 'HOT EDITORIAL',
             sections: [
                 {
-                    heading: 'Price Curations',
+                    heading: 'Royale Bestsellers',
                     items: [
-                        { label: 'Under ₹999 Edits', cat: 'all', sub: 'all', tag: 'Under ₹999' },
-                        { label: 'Under ₹1,499 Edits', cat: 'all', sub: 'all', tag: 'Under ₹1499' },
-                        { label: 'Under ₹2,000 Luxury', cat: 'all', sub: 'all', tag: 'Under ₹2000' }
+                        { label: 'Silk Cowl Neck Slip Dress', cat: 'dresses', sub: 'slip-style' },
+                        { label: 'Kashmiri Zari Anarkali Set', cat: 'ethnic', sub: 'ethnic-sets' },
+                        { label: 'French Illusion Net Er Top', cat: 'tops', sub: 'net-top' },
+                        { label: 'Flared Peplum Short Kurti', cat: 'ethnic', sub: 'short-kurti' }
                     ]
                 },
                 {
-                    heading: 'Occasion Edit',
+                    heading: 'Price Curations',
                     items: [
-                        { label: 'Wedding & Sangeet Trousseau', cat: 'ethnic', sub: 'ethnic-sets' },
-                        { label: 'Date Night Glamour', cat: 'dresses', sub: 'slip-style' },
-                        { label: 'Executive Boardroom Luxe', cat: 'dresses', sub: 'minimal-midi' },
-                        { label: 'Resort Riviera 2026', cat: 'dresses', sub: 'aline-dress' }
+                        { label: 'Under ₹799 Essentials', cat: 'all', sub: 'all', tag: 'Under ₹799' },
+                        { label: 'Under ₹1,199 Luxury', cat: 'all', sub: 'all', tag: 'Under ₹1199' },
+                        { label: 'Under ₹1,899 Imperial Couture', cat: 'all', sub: 'all', tag: 'Under ₹1899' }
+                    ]
+                },
+                {
+                    heading: 'Occasion Edits',
+                    items: [
+                        { label: 'Royal Festive & Wedding Sangeet', cat: 'ethnic', sub: 'ethnic-sets' },
+                        { label: 'Date Night Satin Glamour', cat: 'dresses', sub: 'slip-style' },
+                        { label: 'Resort Riviera Pleated Midis', cat: 'dresses', sub: 'aline-dress' }
                     ]
                 }
             ],
             promo: {
-                title: 'Zoya Zari Anarkali Set',
-                subtitle: 'Handcrafted Chanderi silk with antique Gota Patti',
-                image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=90&w=800&auto=format&fit=crop',
+                title: 'Kashmiri Tilla Anarkali Set',
+                subtitle: 'Handcrafted Chanderi silk with 24K bullion gota patti',
+                price: '₹1,899',
+                image: getImgUrl('/images/products/ethnic_sets_1.jpg'),
                 action: () => handleCategoryClick('ethnic', 'ethnic-sets')
+            }
+        },
+        dresses: {
+            title: 'Designer Dresses & Flared One Pieces',
+            badge: '5 SILHOUETTES',
+            sections: [
+                {
+                    heading: 'Satin & Silk Draping',
+                    items: [
+                        { label: 'Minimal Midi Dress', cat: 'dresses', sub: 'minimal-midi' },
+                        { label: 'Slip Style Dresses', cat: 'dresses', sub: 'slip-style' },
+                        { label: 'Casual Midi Dress', cat: 'dresses', sub: 'casual-midi' }
+                    ]
+                },
+                {
+                    heading: 'Flared & Pleated Midis',
+                    items: [
+                        { label: 'A Line Dress', cat: 'dresses', sub: 'aline-dress' },
+                        { label: 'Short Length Flared One Piece', cat: 'dresses', sub: 'short-flared' }
+                    ]
+                },
+                {
+                    heading: 'Couture Dress Styling',
+                    items: [
+                        { label: 'Virtual Fit 3D Try-On', isTool: 'virtualFit' },
+                        { label: 'Find Your Custom Size', isTool: 'virtualFit' },
+                        { label: 'View All 5 Dress Edits', cat: 'dresses', sub: 'all' }
+                    ]
+                }
+            ],
+            promo: {
+                title: 'Mulberry Silk Slip Dress',
+                subtitle: 'Liquid cowl neckline with bias-cut body hug',
+                price: '₹1,299',
+                image: getImgUrl('/images/products/slip_style_1.jpg'),
+                action: () => handleCategoryClick('dresses', 'slip-style')
+            }
+        },
+        tops: {
+            title: 'Haute Tops, Off-Shoulders & Net Tops',
+            badge: '4 SILHOUETTES',
+            sections: [
+                {
+                    heading: 'Sculpted Bodice Tops',
+                    items: [
+                        { label: 'Fitted Basic Top', cat: 'tops', sub: 'fitted-basic' },
+                        { label: 'Off Shoulder Top', cat: 'tops', sub: 'off-shoulder' }
+                    ]
+                },
+                {
+                    heading: 'Crop & Sheer Netting',
+                    items: [
+                        { label: 'Crop Top', cat: 'tops', sub: 'crop-top' },
+                        { label: 'Net Er Top', cat: 'tops', sub: 'net-top' }
+                    ]
+                },
+                {
+                    heading: 'Runway Styling Guides',
+                    items: [
+                        { label: 'Off-Shoulder Ruched Bardot Edit', cat: 'tops', sub: 'off-shoulder' },
+                        { label: 'Sheer French Net Layering', cat: 'tops', sub: 'net-top' },
+                        { label: 'View All 4 Tops Edits', cat: 'tops', sub: 'all' }
+                    ]
+                }
+            ],
+            promo: {
+                title: 'French Illusion Net Er Top',
+                subtitle: 'Delicate sheer honeycomb netting with floral embroidery',
+                price: '₹799',
+                image: getImgUrl('/images/products/net_top_1.jpg'),
+                action: () => handleCategoryClick('tops', 'net-top')
+            }
+        },
+        ethnic: {
+            title: 'Imperial Kurtis & 3-Piece Ethnic Sets',
+            badge: '3 SILHOUETTES',
+            sections: [
+                {
+                    heading: 'Royal Kurtis',
+                    items: [
+                        { label: 'Modern Long Kurti', cat: 'ethnic', sub: 'modern-long-kurti' },
+                        { label: 'Flared Short Kurti', cat: 'ethnic', sub: 'short-kurti' }
+                    ]
+                },
+                {
+                    heading: 'Imperial Ensemble Sets',
+                    items: [
+                        { label: '3-Piece Anarkali Sets', cat: 'ethnic', sub: 'ethnic-sets' },
+                        { label: 'Zari Bordered Trousseau Sets', cat: 'ethnic', sub: 'ethnic-sets' }
+                    ]
+                },
+                {
+                    heading: 'Heritage Craft Details',
+                    items: [
+                        { label: 'Pure Chanderi & Mulmul Silk', cat: 'ethnic', sub: 'all' },
+                        { label: '24K Bullion Gota Patti Needlework', cat: 'ethnic', sub: 'all' },
+                        { label: 'View All Royal Kurtis & Sets', cat: 'ethnic', sub: 'all' }
+                    ]
+                }
+            ],
+            promo: {
+                title: 'Handblock Flared Peplum Kurti',
+                subtitle: 'Breathable mulmul silk with flared peplum hem',
+                price: '₹899',
+                image: getImgUrl('/images/products/short_kurti_1.jpg'),
+                action: () => handleCategoryClick('ethnic', 'short-kurti')
             }
         }
     };
@@ -140,11 +259,11 @@ export const Navbar = ({ onNavigatePage, currentPage }) => {
                     <TisutaMonogram className="w-full h-full" showSubtitle={true} variant="gold" />
                 </div>
 
-                {/* Desktop Category Navigation with Mega Menu */}
-                <nav className="hidden lg:flex items-center gap-7 text-[11px] font-bold uppercase tracking-[0.22em] text-[#141210]/85">
+                {/* Desktop Category Navigation with Mega Menus */}
+                <nav className="hidden lg:flex items-center gap-6 text-[11px] font-cinzel font-bold uppercase tracking-[0.22em] text-[#141210]/90">
                     <button
                         onClick={() => onNavigatePage('home')}
-                        className={`py-2 transition-colors hover:text-[#D4AF37] relative font-cinzel ${currentPage === 'home' ? 'text-[#D4AF37] font-extrabold' : ''}`}
+                        className={`py-2 transition-colors hover:text-[#D4AF37] relative ${currentPage === 'home' ? 'text-[#D4AF37] font-black' : ''}`}
                     >
                         Home
                         {currentPage === 'home' && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />}
@@ -158,10 +277,10 @@ export const Navbar = ({ onNavigatePage, currentPage }) => {
                     >
                         <button
                             onClick={() => handleCategoryClick('all')}
-                            className="py-2 inline-flex items-center gap-1 transition-colors hover:text-[#121212]"
+                            className="py-2 inline-flex items-center gap-1 transition-colors hover:text-[#D4AF37] cursor-pointer"
                         >
                             <span>Clothing</span>
-                            <ChevronDown className="w-3 h-3 text-[#D5B263]" />
+                            <ChevronDown className="w-3 h-3 text-[#D4AF37]" />
                         </button>
                     </div>
 
@@ -173,57 +292,81 @@ export const Navbar = ({ onNavigatePage, currentPage }) => {
                     >
                         <button
                             onClick={() => onNavigatePage('catalog', { category: 'all' })}
-                            className="py-2 inline-flex items-center gap-1 transition-colors hover:text-[#121212]"
+                            className="py-2 inline-flex items-center gap-1 transition-colors hover:text-[#D4AF37] cursor-pointer"
                         >
                             <span>Trending</span>
-                            <ChevronDown className="w-3 h-3 text-[#D5B263]" />
+                            <ChevronDown className="w-3 h-3 text-[#D4AF37]" />
                         </button>
                     </div>
 
-                    <button
-                        onClick={() => handleCategoryClick('dresses')}
-                        className="py-2 transition-colors hover:text-[#121212]"
+                    {/* Dresses with Mega Dropdown */}
+                    <div 
+                        className="relative"
+                        onMouseEnter={() => setActiveMegaCategory('dresses')}
+                        onMouseLeave={() => setActiveMegaCategory(null)}
                     >
-                        Dresses
-                    </button>
+                        <button
+                            onClick={() => handleCategoryClick('dresses')}
+                            className="py-2 inline-flex items-center gap-1 transition-colors hover:text-[#D4AF37] cursor-pointer"
+                        >
+                            <span>Dresses</span>
+                            <ChevronDown className="w-3 h-3 text-[#D4AF37]" />
+                        </button>
+                    </div>
 
-                    <button
-                        onClick={() => handleCategoryClick('tops')}
-                        className="py-2 transition-colors hover:text-[#121212]"
+                    {/* Tops with Mega Dropdown */}
+                    <div 
+                        className="relative"
+                        onMouseEnter={() => setActiveMegaCategory('tops')}
+                        onMouseLeave={() => setActiveMegaCategory(null)}
                     >
-                        Tops
-                    </button>
+                        <button
+                            onClick={() => handleCategoryClick('tops')}
+                            className="py-2 inline-flex items-center gap-1 transition-colors hover:text-[#D4AF37] cursor-pointer"
+                        >
+                            <span>Tops</span>
+                            <ChevronDown className="w-3 h-3 text-[#D4AF37]" />
+                        </button>
+                    </div>
 
-                    <button
-                        onClick={() => handleCategoryClick('ethnic')}
-                        className="py-2 transition-colors hover:text-[#121212]"
+                    {/* Kurtis & Ethnic Sets with Mega Dropdown */}
+                    <div 
+                        className="relative"
+                        onMouseEnter={() => setActiveMegaCategory('ethnic')}
+                        onMouseLeave={() => setActiveMegaCategory(null)}
                     >
-                        Ethnic & Sets
-                    </button>
+                        <button
+                            onClick={() => handleCategoryClick('ethnic')}
+                            className="py-2 inline-flex items-center gap-1 transition-colors hover:text-[#D4AF37] cursor-pointer"
+                        >
+                            <span>Kurtis & Sets</span>
+                            <ChevronDown className="w-3 h-3 text-[#D4AF37]" />
+                        </button>
+                    </div>
 
-                    {/* Interactive Innovation Tools */}
+                    {/* Interactive 3D Virtual Fit Studio Button */}
                     <button
                         onClick={() => openVirtualFit()}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#121212] text-[#D5B263] hover:bg-[#D5B263] hover:text-[#121212] rounded-full text-[10px] font-bold tracking-[0.16em] transition-all shadow-sm"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#D4AF37] text-[#141210] hover:scale-105 rounded-full text-[10px] font-black tracking-[0.2em] transition-all shadow-[0_4px_16px_rgba(212,175,55,0.35)] border border-[#F5D77F] cursor-pointer"
                     >
-                        <Sparkles className="w-3 h-3" />
-                        <span>Virtual Fit</span>
+                        <Sparkles className="w-3.5 h-3.5 fill-[#141210]" />
+                        <span>3D VIRTUAL FIT</span>
                     </button>
 
                     <button
                         onClick={() => setIsStylistOpen(true)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#F7F4EE] text-[#121212] border border-[#D5B263]/40 hover:bg-[#121212] hover:text-[#D5B263] rounded-full text-[10px] font-bold tracking-[0.16em] transition-all shadow-sm"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white text-[#141210] border border-[#D4AF37]/50 hover:bg-[#141210] hover:text-[#F5D77F] rounded-full text-[10px] font-bold tracking-[0.16em] transition-all shadow-sm cursor-pointer"
                     >
-                        <Bot className="w-3 h-3 text-[#D5B263]" />
+                        <Bot className="w-3 h-3 text-[#D4AF37]" />
                         <span>AI Stylist</span>
                     </button>
 
                     <button
                         onClick={() => setIsStyleboardOpen(true)}
-                        className="inline-flex items-center gap-1.5 text-[10px] text-[#121212]/70 hover:text-[#D5B263] transition-colors"
-                        title="LimeRoad-style interactive scrapbook outfit builder"
+                        className="inline-flex items-center gap-1 text-[10px] text-[#141210]/80 hover:text-[#D4AF37] transition-colors cursor-pointer"
+                        title="Interactive scrapbook outfit builder"
                     >
-                        <Palette className="w-3.5 h-3.5 text-[#D5B263]" />
+                        <Palette className="w-3.5 h-3.5 text-[#D4AF37]" />
                         <span>Styleboard</span>
                     </button>
                 </nav>
@@ -323,56 +466,84 @@ export const Navbar = ({ onNavigatePage, currentPage }) => {
             {/* Mega Menu Dropdown Stage */}
             {activeMegaCategory && megaMenus[activeMegaCategory] && (
                 <div 
-                    className="hidden lg:block absolute top-[108px] inset-x-0 bg-[#FDFBF7] border-b border-[#D5B263]/30 shadow-2xl py-10 transition-all animate-fadeIn"
+                    className="hidden lg:block absolute top-full inset-x-0 bg-white/98 backdrop-blur-2xl border-b-2 border-[#D4AF37]/40 shadow-[0_25px_60px_rgba(212,175,55,0.18)] py-8 transition-all animate-fadeIn z-50"
                     onMouseEnter={() => setActiveMegaCategory(activeMegaCategory)}
                     onMouseLeave={() => setActiveMegaCategory(null)}
                 >
-                    <div className="max-w-7xl mx-auto px-8 grid grid-cols-12 gap-8 items-start">
-                        {/* Categories Columns */}
-                        <div className="col-span-8 grid grid-cols-3 gap-6">
-                            {megaMenus[activeMegaCategory].sections.map((sec, idx) => (
-                                <div key={idx} className="space-y-4">
-                                    <h4 className="font-serif-luxury text-sm font-bold text-[#121212] uppercase tracking-wider border-b border-[#D5B263]/30 pb-2">
-                                        {sec.heading}
-                                    </h4>
-                                    <ul className="space-y-2 text-xs">
-                                        {sec.items.map((item, i) => (
-                                            <li key={i}>
-                                                <button
-                                                    onClick={() => handleCategoryClick(item.cat, item.sub, item.tag)}
-                                                    className="text-[#121212]/70 hover:text-[#121212] hover:translate-x-1 font-medium transition-all text-left block"
-                                                >
-                                                    {item.label}
-                                                </button>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
+                    <div className="max-w-7xl mx-auto px-8">
+                        {/* Mega Menu Top Category Badge */}
+                        <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-[#D4AF37]/25">
+                            <Crown className="w-4 h-4 text-[#D4AF37]" />
+                            <h3 className="font-cinzel text-base font-black text-[#141210] uppercase tracking-wider">
+                                {megaMenus[activeMegaCategory].title}
+                            </h3>
+                            <span className="px-3 py-0.5 bg-gradient-to-r from-[#D4AF37]/20 to-[#F5D77F]/30 border border-[#D4AF37]/50 text-[#9E7D23] font-cinzel text-[9.5px] font-black rounded-full uppercase tracking-widest ml-auto shadow-sm">
+                                {megaMenus[activeMegaCategory].badge}
+                            </span>
                         </div>
 
-                        {/* Editorial Promo Card */}
-                        <div className="col-span-4 bg-[#121212] text-[#FDFBF7] rounded-3xl p-5 border border-[#D5B263]/40 flex gap-4 items-center group cursor-pointer"
-                             onClick={megaMenus[activeMegaCategory].promo.action}>
-                            <img
-                                src={megaMenus[activeMegaCategory].promo.image}
-                                alt=""
-                                className="w-24 h-32 object-cover rounded-2xl border border-[#D5B263]/30 group-hover:scale-105 transition-transform"
-                            />
-                            <div className="space-y-2">
-                                <span className="text-[9px] font-bold text-[#D5B263] uppercase tracking-widest block">
-                                    Featured Drop
-                                </span>
-                                <h5 className="font-serif-luxury text-base font-bold text-white leading-tight">
-                                    {megaMenus[activeMegaCategory].promo.title}
-                                </h5>
-                                <p className="text-[11px] text-white/60 leading-relaxed font-light">
-                                    {megaMenus[activeMegaCategory].promo.subtitle}
-                                </p>
-                                <span className="text-[10px] font-bold text-[#D5B263] uppercase tracking-wider inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                    <span>Shop Now</span>
-                                    <ArrowRight className="w-3 h-3" />
-                                </span>
+                        <div className="grid grid-cols-12 gap-8 items-start">
+                            {/* Categories Columns */}
+                            <div className="col-span-8 grid grid-cols-3 gap-6">
+                                {megaMenus[activeMegaCategory].sections.map((sec, idx) => (
+                                    <div key={idx} className="space-y-3.5">
+                                        <h4 className="font-cinzel text-xs font-bold text-[#9E7D23] uppercase tracking-wider border-b border-[#D4AF37]/25 pb-2">
+                                            {sec.heading}
+                                        </h4>
+                                        <ul className="space-y-2 text-xs">
+                                            {sec.items.map((item, i) => (
+                                                <li key={i}>
+                                                    <button
+                                                        onClick={() => {
+                                                            if (item.isTool === 'virtualFit') {
+                                                                openVirtualFit();
+                                                                setActiveMegaCategory(null);
+                                                            } else {
+                                                                handleCategoryClick(item.cat, item.sub, item.tag);
+                                                            }
+                                                        }}
+                                                        className="font-cinzel text-xs font-semibold text-[#141210]/80 hover:text-[#D4AF37] hover:translate-x-1.5 transition-all text-left flex items-center gap-2 group cursor-pointer"
+                                                    >
+                                                        <span className="text-[10px] text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity">✦</span>
+                                                        <span>{item.label}</span>
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Editorial Promo Card */}
+                            <div 
+                                className="col-span-4 bg-gradient-to-br from-[#1C1814] via-[#141210] to-[#1C1814] text-white rounded-3xl p-5 border-2 border-[#D4AF37]/50 shadow-[0_12px_35px_rgba(212,175,55,0.25)] flex gap-4 items-center group cursor-pointer hover:border-[#F5D77F] transition-all"
+                                onClick={megaMenus[activeMegaCategory].promo.action}
+                            >
+                                <div className="relative w-24 h-32 rounded-2xl overflow-hidden border border-[#D4AF37]/50 flex-shrink-0">
+                                    <img
+                                        src={megaMenus[activeMegaCategory].promo.image}
+                                        alt=""
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    />
+                                    <div className="absolute top-1.5 right-1.5 px-2 py-0.5 bg-[#D4AF37] text-[#141210] text-[9px] font-black font-cinzel rounded shadow-md">
+                                        {megaMenus[activeMegaCategory].promo.price}
+                                    </div>
+                                </div>
+                                <div className="space-y-1.5">
+                                    <span className="text-[9px] font-cinzel font-black text-[#F5D77F] uppercase tracking-widest block">
+                                        ATELIER SPOTLIGHT
+                                    </span>
+                                    <h5 className="font-cinzel text-sm font-bold text-white leading-tight group-hover:text-[#F5D77F] transition-colors">
+                                        {megaMenus[activeMegaCategory].promo.title}
+                                    </h5>
+                                    <p className="text-[11px] text-white/70 leading-relaxed font-light line-clamp-2">
+                                        {megaMenus[activeMegaCategory].promo.subtitle}
+                                    </p>
+                                    <span className="text-[10px] font-cinzel font-bold text-[#F5D77F] uppercase tracking-wider inline-flex items-center gap-1 group-hover:translate-x-1.5 transition-transform pt-1">
+                                        <span>Explore Silhouette</span>
+                                        <ArrowRight className="w-3 h-3" />
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -381,97 +552,142 @@ export const Navbar = ({ onNavigatePage, currentPage }) => {
 
             {/* Mobile Drawer */}
             {mobileOpen && (
-                <div className="lg:hidden border-t border-[#D5B263]/20 bg-[#FDFBF7] px-6 py-6 space-y-4 max-h-[80vh] overflow-y-auto">
-                    <div className="flex gap-2 pb-3 border-b border-[#D5B263]/20">
+                <div className="lg:hidden border-t border-[#D4AF37]/25 bg-white/98 backdrop-blur-xl px-6 py-6 space-y-5 max-h-[85vh] overflow-y-auto shadow-2xl">
+                    <div className="flex gap-2 pb-4 border-b border-[#D4AF37]/20">
                         <button
                             onClick={() => { openVirtualFit(); setMobileOpen(false); }}
-                            className="flex-1 py-2.5 bg-[#121212] text-[#D5B263] rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
+                            className="flex-1 py-3 bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#D4AF37] text-[#141210] rounded-xl text-xs font-cinzel font-black uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md"
                         >
-                            <Sparkles className="w-3.5 h-3.5" />
-                            <span>Virtual Fit</span>
+                            <Sparkles className="w-3.5 h-3.5 fill-[#141210]" />
+                            <span>3D Virtual Fit</span>
                         </button>
                         <button
                             onClick={() => { setIsStylistOpen(true); setMobileOpen(false); }}
-                            className="flex-1 py-2.5 bg-[#F7F4EE] border border-[#D5B263]/40 text-[#121212] rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5"
+                            className="flex-1 py-3 bg-white border border-[#D4AF37]/50 text-[#141210] rounded-xl text-xs font-cinzel font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-sm"
                         >
-                            <Bot className="w-3.5 h-3.5 text-[#D5B263]" />
+                            <Bot className="w-3.5 h-3.5 text-[#D4AF37]" />
                             <span>AI Stylist</span>
                         </button>
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-4">
                         <button
                             onClick={() => { onNavigatePage('home'); setMobileOpen(false); }}
-                            className="w-full text-left py-2 font-serif-luxury text-base font-bold text-[#121212]"
+                            className="w-full text-left py-2 font-cinzel text-base font-bold text-[#141210] border-b border-[#D4AF37]/20 pb-2"
                         >
-                            Home Storefront
+                            ✦ Home Storefront
                         </button>
-                        <button
-                            onClick={() => handleCategoryClick('dresses', 'midi')}
-                            className="w-full text-left py-2 text-sm text-[#121212]/80 hover:text-[#121212]"
-                        >
-                            Minimal Midi Dresses
-                        </button>
-                        <button
-                            onClick={() => handleCategoryClick('dresses', 'slip')}
-                            className="w-full text-left py-2 text-sm text-[#121212]/80 hover:text-[#121212]"
-                        >
-                            Slip Style Dresses
-                        </button>
-                        <button
-                            onClick={() => handleCategoryClick('dresses', 'aline')}
-                            className="w-full text-left py-2 text-sm text-[#121212]/80 hover:text-[#121212]"
-                        >
-                            A-Line Dresses
-                        </button>
-                        <button
-                            onClick={() => handleCategoryClick('dresses', 'mini')}
-                            className="w-full text-left py-2 text-sm text-[#121212]/80 hover:text-[#121212]"
-                        >
-                            Short Flared One Pieces
-                        </button>
-                        <button
-                            onClick={() => handleCategoryClick('tops', 'fitted')}
-                            className="w-full text-left py-2 text-sm text-[#121212]/80 hover:text-[#121212]"
-                        >
-                            Fitted Basic Tops
-                        </button>
-                        <button
-                            onClick={() => handleCategoryClick('tops', 'off-shoulder')}
-                            className="w-full text-left py-2 text-sm text-[#121212]/80 hover:text-[#121212]"
-                        >
-                            Off Shoulder Tops
-                        </button>
-                        <button
-                            onClick={() => handleCategoryClick('tops', 'net')}
-                            className="w-full text-left py-2 text-sm text-[#121212]/80 hover:text-[#121212]"
-                        >
-                            Net & Sheer Tops
-                        </button>
-                        <button
-                            onClick={() => handleCategoryClick('ethnic', 'kurtis')}
-                            className="w-full text-left py-2 text-sm text-[#121212]/80 hover:text-[#121212]"
-                        >
-                            Modern Long & Short Kurtis
-                        </button>
-                        <button
-                            onClick={() => handleCategoryClick('ethnic', 'sets')}
-                            className="w-full text-left py-2 text-sm text-[#121212]/80 hover:text-[#121212]"
-                        >
-                            Regal Ethnic Sets
-                        </button>
+
+                        {/* Dresses section */}
+                        <div className="space-y-1">
+                            <div className="text-[10px] font-cinzel font-black text-[#9E7D23] uppercase tracking-widest">
+                                Dresses & One Pieces (5 Silhouettes)
+                            </div>
+                            <div className="grid grid-cols-1 gap-1 pl-2">
+                                <button
+                                    onClick={() => handleCategoryClick('dresses', 'minimal-midi')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Minimal Midi Dress
+                                </button>
+                                <button
+                                    onClick={() => handleCategoryClick('dresses', 'slip-style')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Slip Style Dresses
+                                </button>
+                                <button
+                                    onClick={() => handleCategoryClick('dresses', 'aline-dress')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • A-Line Dress
+                                </button>
+                                <button
+                                    onClick={() => handleCategoryClick('dresses', 'short-flared')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Short Length Flared One Piece
+                                </button>
+                                <button
+                                    onClick={() => handleCategoryClick('dresses', 'casual-midi')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Casual Midi Dress
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Tops section */}
+                        <div className="space-y-1">
+                            <div className="text-[10px] font-cinzel font-black text-[#9E7D23] uppercase tracking-widest">
+                                Tops & Blouses (4 Silhouettes)
+                            </div>
+                            <div className="grid grid-cols-1 gap-1 pl-2">
+                                <button
+                                    onClick={() => handleCategoryClick('tops', 'fitted-basic')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Fitted Basic Top
+                                </button>
+                                <button
+                                    onClick={() => handleCategoryClick('tops', 'off-shoulder')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Off Shoulder Top
+                                </button>
+                                <button
+                                    onClick={() => handleCategoryClick('tops', 'crop-top')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Crop Top
+                                </button>
+                                <button
+                                    onClick={() => handleCategoryClick('tops', 'net-top')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Net Er Top
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Kurtis & Ethnic sets */}
+                        <div className="space-y-1">
+                            <div className="text-[10px] font-cinzel font-black text-[#9E7D23] uppercase tracking-widest">
+                                Kurtis & Royal Ethnic Sets (3 Silhouettes)
+                            </div>
+                            <div className="grid grid-cols-1 gap-1 pl-2">
+                                <button
+                                    onClick={() => handleCategoryClick('ethnic', 'modern-long-kurti')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Modern Long Kurti
+                                </button>
+                                <button
+                                    onClick={() => handleCategoryClick('ethnic', 'short-kurti')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Short Kurti
+                                </button>
+                                <button
+                                    onClick={() => handleCategoryClick('ethnic', 'ethnic-sets')}
+                                    className="text-left py-1 text-xs font-cinzel font-semibold text-[#141210]/80 hover:text-[#D4AF37]"
+                                >
+                                    • Ethnic Sets (3-Piece Anarkali)
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="pt-4 border-t border-[#D5B263]/20 flex flex-col gap-2">
+                    <div className="pt-4 border-t border-[#D4AF37]/25 flex flex-col gap-2">
                         <button
                             onClick={() => { setIsStyleboardOpen(true); setMobileOpen(false); }}
-                            className="w-full py-2.5 text-center text-xs font-bold uppercase tracking-wider text-[#121212] bg-white rounded-xl border border-[#D5B263]/30"
+                            className="w-full py-2.5 text-center text-xs font-cinzel font-bold uppercase tracking-wider text-[#141210] bg-white rounded-xl border border-[#D4AF37]/40 shadow-sm"
                         >
                             TISUTA Styleboard Scrapbook
                         </button>
                         <button
                             onClick={() => { onNavigatePage('admin'); setMobileOpen(false); }}
-                            className="w-full py-2.5 text-center text-xs font-bold uppercase tracking-wider text-[#D5B263] bg-[#121212] rounded-xl"
+                            className="w-full py-2.5 text-center text-xs font-cinzel font-bold uppercase tracking-wider text-[#F5D77F] bg-[#141210] rounded-xl shadow-md"
                         >
                             Enterprise Admin Suite
                         </button>
