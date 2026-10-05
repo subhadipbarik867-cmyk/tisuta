@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Sparkles, Camera, Check, X, ArrowRight, RotateCcw, Sliders, ShieldCheck, Heart } from 'lucide-react';
 import { useShop } from '../../context/ShopContext';
 import { ThreeDBodyAvatar } from './ThreeDBodyAvatar';
+import { getImgUrl } from '../../utils/imageUtils';
 
 export const VirtualFitSuite = () => {
     const {
@@ -56,7 +57,7 @@ export const VirtualFitSuite = () => {
             outfitName: currentGarment.name,
             recommendedSize: selectedSize,
             fitScore: fitScore,
-            previewImage: currentGarment.images[0],
+            previewImage: getImgUrl(currentGarment?.images?.[0]),
             date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
         });
         alert('Look saved to your TISUTA Profile!');
@@ -119,10 +120,10 @@ export const VirtualFitSuite = () => {
                             key={s.num}
                             onClick={() => setStep(s.num)}
                             className={`py-3.5 px-2 text-center transition-colors border-b-2 flex items-center justify-center gap-1 cursor-pointer ${step === s.num
-                                    ? 'border-[#C5A059] text-[#C5A059] bg-[#141414]'
-                                    : step > s.num
-                                        ? 'border-emerald-500/50 text-emerald-400 opacity-80'
-                                        : 'border-transparent text-white/40'
+                                ? 'border-[#C5A059] text-[#C5A059] bg-[#141414]'
+                                : step > s.num
+                                    ? 'border-emerald-500/50 text-emerald-400 opacity-80'
+                                    : 'border-transparent text-white/40'
                                 }`}
                         >
                             {step > s.num && <Check className="w-3 h-3 text-emerald-400" />}
@@ -147,7 +148,7 @@ export const VirtualFitSuite = () => {
                                     hips={bodyMetrics.hips}
                                     bodyShape={bodyMetrics.bodyShape}
                                     garmentColor={selectedColor}
-                                    garmentImage={currentGarment?.images[0]}
+                                    garmentImage={getImgUrl(currentGarment?.images?.[0])}
                                     fitScore={fitScore}
                                 />
                             </div>
@@ -315,7 +316,7 @@ export const VirtualFitSuite = () => {
                                         className={`p-3 rounded-2xl border transition-all cursor-pointer bg-[#0F0F0F] space-y-2 ${selectedProduct?.id === p.id ? 'border-[#C5A059] ring-2 ring-[#C5A059]' : 'border-white/10 opacity-80'
                                             }`}
                                     >
-                                        <img src={p.images[0]} alt="" className="w-full aspect-[3/4] object-cover rounded-xl" />
+                                        <img src={getImgUrl(p.images?.[0])} alt="" className="w-full aspect-[3/4] object-cover rounded-xl" />
                                         <div className="text-xs">
                                             <div className="font-bold line-clamp-1 text-white">{p.name}</div>
                                             <div className="text-[#C5A059] font-semibold">₹{p.price.toLocaleString('en-IN')}</div>

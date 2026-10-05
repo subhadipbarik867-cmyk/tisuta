@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Sparkles, Play, X, ShoppingBag, ArrowRight, Heart, Volume2, VolumeX } from 'lucide-react';
 import { useShop } from '../../context/ShopContext';
 
-export const STORY_DATA = [
+const STORY_DATA = [
     {
         id: 'story-1',
         title: 'Paris Runway 2026',
@@ -49,14 +49,14 @@ export const STORY_DATA = [
     },
     {
         id: 'story-5',
-        title: 'Kundan Couture',
-        author: 'High Jewelry',
-        avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop',
-        media: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop',
-        tag: 'Jewelry Heritage',
-        productName: 'Royal Uncut Diamond & Emerald Choker',
-        price: 45999,
-        productId: 'tisuta-007'
+        title: 'French Net Couture',
+        author: 'Atelier Tisuta',
+        avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop',
+        media: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800&auto=format&fit=crop',
+        tag: 'Sheer Net Edit',
+        productName: 'Elysian Sheer Embroidered French Illusion Net Top',
+        price: 1499,
+        productId: 'tp-net-sheer'
     }
 ];
 

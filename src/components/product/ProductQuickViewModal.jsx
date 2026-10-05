@@ -1,48 +1,37 @@
 import React, { useState } from 'react';
 import { X, Heart, Sparkles, ShoppingBag, ShieldCheck, Star } from 'lucide-react';
 import { useShop } from '../../context/ShopContext';
+import { getImgUrl } from '../../utils/imageUtils';
 
-export const ProductQuickViewModal = () => {
-    const {
-        isQuickViewOpen,
-        closeQuickView,
-        quickViewProduct,
-        addToCart,
-        toggleWishlist,
-        isWishlisted,
-        openVirtualFit
-    } = useShop();
+const QuickViewContent = ({ product, onClose }) => {
+    const { addToCart, isWishlisted, toggleWishlist, openVirtualFit } = useShop();
+    const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || { name: 'Default', hex: '#000' });
+    const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || 'M');
+    const [activeImage, setActiveImage] = useState(getImgUrl(product.colors?.[0]?.image) || getImgUrl(product.images?.[0]));
 
-    if (!isQuickViewOpen || !quickViewProduct) return null;
-
-    const [selectedColor, setSelectedColor] = useState(quickViewProduct.colors[0]);
-    const [selectedSize, setSelectedSize] = useState(quickViewProduct.sizes[0] || 'M');
-    const [activeImage, setActiveImage] = useState(quickViewProduct.colors[0]?.image || quickViewProduct.images[0]);
-    const [quantity, setQuantity] = useState(1);
-
-    const wishlisted = isWishlisted(quickViewProduct.id);
+    const wishlisted = isWishlisted(product.id);
 
     const handleColorClick = (c) => {
         setSelectedColor(c);
         if (c.image) {
-            setActiveImage(c.image);
+            setActiveImage(getImgUrl(c.image));
         }
     };
 
     const handleAddToCart = () => {
-        addToCart(quickViewProduct, selectedSize, selectedColor, quantity);
-        closeQuickView();
+        addToCart(product, selectedSize, selectedColor, 1);
+        onClose();
     };
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
-            <div onClick={closeQuickView} className="fixed inset-0 bg-black/80 backdrop-blur-md" />
+            <div onClick={onClose} className="fixed inset-0 bg-black/80 backdrop-blur-md" />
 
-            <div className="relative w-full max-w-4xl bg-[#FDFBF7] text-[#121212] rounded-3xl border border-[#D5B263]/40 shadow-2xl overflow-hidden z-10 my-auto grid grid-cols-1 md:grid-cols-12">
+            <div className="relative w-full max-w-4xl bg-[#FDFBF7] text-[#121212] rounded-3xl border border-[#D5B263]/40 shadow-2xl overflow-hidden z-10 my-auto grid grid-cols-1 md:grid-cols-12 animate-in fade-in zoom-in-95 duration-200">
 
                 {/* Close Button */}
                 <button
-                    onClick={closeQuickView}
+                    onClick={onClose}
                     className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-white/80 backdrop-blur-md text-[#121212] hover:bg-white shadow-md transition-colors"
                 >
                     <X className="w-5 h-5" />
@@ -51,18 +40,18 @@ export const ProductQuickViewModal = () => {
                 {/* Gallery Left (6 Cols) */}
                 <div className="md:col-span-6 bg-[#F7F4EE] relative flex flex-col justify-between p-6">
                     <div className="aspect-[3/4] w-full rounded-2xl overflow-hidden border border-[#D5B263]/30 shadow-md">
-                        <img src={activeImage} alt="" className="w-full h-full object-cover transition-all duration-500" />
+                        <img src={getImgUrl(activeImage)} alt={product.name} className="w-full h-full object-cover transition-all duration-500" />
                     </div>
 
                     <div className="flex gap-2 overflow-x-auto pt-4">
-                        {quickViewProduct.images.map((img, idx) => (
+                        {product.images?.map((img, idx) => (
                             <button
                                 key={idx}
-                                onClick={() => setActiveImage(img)}
-                                className={`w-16 h-20 rounded-xl overflow-hidden border-2 transition-all flex-shrink-0 ${activeImage === img ? 'border-[#D5B263] ring-2 ring-[#D5B263]' : 'border-transparent opacity-70'
+                                onClick={() => setActiveImage(getImgUrl(img))}
+                                className={`w-16 h-20 rounded-xl overflow-hidden border-2 transition-all flex-shrink-0 ${activeImage === getImgUrl(img) ? 'border-[#D5B263] ring-2 ring-[#D5B263]' : 'border-transparent opacity-70'
                                     }`}
                             >
-                                <img src={img} alt="" className="w-full h-full object-cover" />
+                                <img src={getImgUrl(img)} alt="" className="w-full h-full object-cover" />
                             </button>
                         ))}
                     </div>
@@ -73,60 +62,64 @@ export const ProductQuickViewModal = () => {
                     <div className="space-y-4">
                         <div>
                             <span className="text-[10px] font-bold text-[#D5B263] uppercase tracking-widest block">
-                                {quickViewProduct.brand}
+                                {product.brand || 'TISUTA ATELIER'}
                             </span>
                             <h3 className="font-serif-luxury text-2xl font-bold text-[#121212] mt-1">
-                                {quickViewProduct.name}
+                                {product.name}
                             </h3>
                         </div>
 
                         <div className="flex items-center gap-3">
                             <span className="text-2xl font-bold text-[#121212]">
-                                ₹{quickViewProduct.price.toLocaleString('en-IN')}
+                                ₹{product.price?.toLocaleString('en-IN')}
                             </span>
-                            {quickViewProduct.mrp > quickViewProduct.price && (
+                            {product.mrp > product.price && (
                                 <span className="text-xs text-gray-400 line-through">
-                                    ₹{quickViewProduct.mrp.toLocaleString('en-IN')}
+                                    ₹{product.mrp?.toLocaleString('en-IN')}
                                 </span>
                             )}
                         </div>
 
                         {/* Dynamic Swatch Colors */}
-                        <div className="space-y-2">
-                            <label className="text-xs font-semibold text-[#121212] block">
-                                Shade: <strong>{selectedColor.name}</strong>
-                            </label>
-                            <div className="flex gap-2">
-                                {quickViewProduct.colors.map(c => (
-                                    <button
-                                        key={c.name}
-                                        onClick={() => handleColorClick(c)}
-                                        style={{ backgroundColor: c.hex }}
-                                        className={`w-7 h-7 rounded-full border border-black/20 ${selectedColor.name === c.name ? 'ring-2 ring-[#D5B263] scale-110' : ''
-                                            }`}
-                                    />
-                                ))}
+                        {product.colors && product.colors.length > 0 && (
+                            <div className="space-y-2">
+                                <label className="text-xs font-semibold text-[#121212] block">
+                                    Shade: <strong>{selectedColor?.name}</strong>
+                                </label>
+                                <div className="flex gap-2">
+                                    {product.colors.map(c => (
+                                        <button
+                                            key={c.name}
+                                            onClick={() => handleColorClick(c)}
+                                            style={{ backgroundColor: c.hex }}
+                                            className={`w-7 h-7 rounded-full border border-black/20 ${selectedColor?.name === c.name ? 'ring-2 ring-[#D5B263] scale-110' : ''
+                                                }`}
+                                        />
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* Sizes */}
-                        <div className="space-y-2">
-                            <label className="text-xs font-semibold text-[#121212]">Size</label>
-                            <div className="flex gap-2">
-                                {quickViewProduct.sizes.map(s => (
-                                    <button
-                                        key={s}
-                                        onClick={() => setSelectedSize(s)}
-                                        className={`w-10 h-10 rounded-xl text-xs font-bold border transition-all ${selectedSize === s
+                        {product.sizes && product.sizes.length > 0 && (
+                            <div className="space-y-2">
+                                <label className="text-xs font-semibold text-[#121212]">Size</label>
+                                <div className="flex gap-2">
+                                    {product.sizes.map(s => (
+                                        <button
+                                            key={s}
+                                            onClick={() => setSelectedSize(s)}
+                                            className={`w-10 h-10 rounded-xl text-xs font-bold border transition-all ${selectedSize === s
                                                 ? 'bg-[#121212] text-[#D5B263] border-[#D5B263]'
                                                 : 'bg-white text-[#121212] border-gray-200'
-                                            }`}
-                                    >
-                                        {s}
-                                    </button>
-                                ))}
+                                                }`}
+                                        >
+                                            {s}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
 
                     <div className="space-y-3 pt-2">
@@ -140,8 +133,8 @@ export const ProductQuickViewModal = () => {
 
                         <button
                             onClick={() => {
-                                closeQuickView();
-                                openVirtualFit(quickViewProduct);
+                                onClose();
+                                openVirtualFit(product);
                             }}
                             className="w-full py-3 bg-[#121212] text-[#D5B263] font-bold text-xs rounded-xl flex items-center justify-center gap-2"
                         >
@@ -155,6 +148,16 @@ export const ProductQuickViewModal = () => {
             </div>
         </div>
     );
+};
+
+export const ProductQuickViewModal = () => {
+    const { isQuickViewOpen, closeQuickView, quickViewProduct } = useShop();
+
+    if (!isQuickViewOpen || !quickViewProduct) {
+        return null;
+    }
+
+    return <QuickViewContent product={quickViewProduct} onClose={closeQuickView} />;
 };
 
 export default ProductQuickViewModal;

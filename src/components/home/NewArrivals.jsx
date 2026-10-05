@@ -18,43 +18,43 @@ export const NewArrivals = ({ onSelectProduct, onNavigatePage }) => {
     };
 
     return (
-        <section className="py-24 bg-[#FAF8F5] text-[#0A0908] overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 bg-[#FDFBF7] text-[#121212] overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
                 {/* Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#D5B263]/30 pb-6">
                     <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                            <div className="h-px w-8 bg-[#C5A059]" />
-                            <span className="text-[11px] font-bold tracking-[0.25em] text-[#C5A059] uppercase">Runway Drops 2026</span>
+                            <div className="h-0.5 w-8 bg-[#D5B263]" />
+                            <span className="text-[11px] font-bold tracking-[0.25em] text-[#D5B263] uppercase">Runway Drops 2026</span>
                         </div>
-                        <h2 className="font-serif-luxury text-4xl sm:text-5xl text-[#0A0908] font-bold">
-                            New Arrivals & Trending
+                        <h2 className="font-serif-luxury text-4xl sm:text-5xl text-[#121212] font-bold">
+                            New Arrivals & Editorial Trending
                         </h2>
-                        <p className="text-sm text-gray-400 font-light max-w-md">
-                            Freshly arrived from our master artisans and design ateliers across India and Europe.
+                        <p className="text-xs sm:text-sm text-[#121212]/60 font-light max-w-md">
+                            Freshly crafted from master ateliers across Paris and India — available in limited boutique quantities.
                         </p>
                     </div>
 
                     <div className="flex items-center gap-3 mt-6 md:mt-0">
                         <button
                             onClick={() => scroll('left')}
-                            className="p-3 rounded-full bg-white border border-[#C5A059]/30 text-[#0A0908] hover:bg-[#C5A059] hover:text-white hover:border-[#C5A059] transition-colors shadow-sm cursor-pointer"
+                            className="p-3 rounded-xl bg-white border border-[#D5B263]/40 text-[#121212] hover:bg-[#D5B263] hover:text-[#121212] transition-colors shadow-sm cursor-pointer"
                         >
                             <ChevronLeft className="w-5 h-5" />
                         </button>
                         <button
                             onClick={() => scroll('right')}
-                            className="p-3 rounded-full bg-white border border-[#C5A059]/30 text-[#0A0908] hover:bg-[#C5A059] hover:text-white hover:border-[#C5A059] transition-colors shadow-sm cursor-pointer"
+                            className="p-3 rounded-xl bg-white border border-[#D5B263]/40 text-[#121212] hover:bg-[#D5B263] hover:text-[#121212] transition-colors shadow-sm cursor-pointer"
                         >
                             <ChevronRight className="w-5 h-5" />
                         </button>
                         <button
                             onClick={() => onNavigatePage('catalog', { category: 'all' })}
-                            className="hidden md:flex items-center gap-2 px-5 py-3 bg-[#0A0908] text-[#C5A059] text-xs font-bold tracking-widest uppercase rounded-xl hover:bg-[#1A1918] transition-colors cursor-pointer"
+                            className="hidden md:flex items-center gap-2 px-6 py-3 bg-[#121212] text-[#D5B263] text-xs font-bold tracking-widest uppercase rounded-xl hover:bg-[#D5B263] hover:text-[#121212] transition-colors cursor-pointer shadow-md"
                         >
-                            <span>View All</span>
-                            <ArrowRight className="w-3.5 h-3.5" />
+                            <span>View All Drops</span>
+                            <ArrowRight className="w-4 h-4" />
                         </button>
                     </div>
                 </div>
@@ -62,13 +62,13 @@ export const NewArrivals = ({ onSelectProduct, onNavigatePage }) => {
                 {/* Horizontal Scrolling Product Carousel */}
                 <div
                     ref={scrollRef}
-                    className="flex gap-5 overflow-x-auto pb-4 scroll-smooth"
+                    className="flex gap-6 overflow-x-auto pb-6 scroll-smooth"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                     {newProducts.map((product) => (
                         <div
                             key={product.id}
-                            className="min-w-[260px] sm:min-w-[300px] max-w-[300px] flex-shrink-0"
+                            className="min-w-[270px] sm:min-w-[310px] max-w-[310px] flex-shrink-0"
                         >
                             <ProductCard product={product} onSelectProduct={onSelectProduct} />
                         </div>

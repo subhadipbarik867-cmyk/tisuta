@@ -2,15 +2,19 @@
 
 @layer base {
   :root {
-    --color-royal-white: #FAFAFA;
-    --color-ivory: #F5F4F0;
-    --color-champagne-gold: #C5A059;
-    --color-charcoal: #0F0F0F;
-    --color-charcoal-muted: #1A1A1A;
+    --color-royal-white: #FFFFFF;
+    --color-ivory: #FDFBF7;
+    --color-charcoal: #121212;
+    --color-gold-accent: #D5B263;
+    --color-gold-light: #E5C880;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--color-royal-white);
+    background-color: var(--color-ivory);
     color: var(--color-charcoal);
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
@@ -30,118 +34,225 @@
   }
 }
 
-/* Quiet Luxury Custom Utilities */
-.hairline-border {
-  border-width: 1px;
-  border-color: rgba(15, 15, 15, 0.12);
+/* GPU Accelerated Image Micro-Zoom Engine */
+.img-zoom-container {
+  overflow: hidden;
+  position: relative;
+  will-change: transform;
 }
 
-.hairline-gold {
+.img-luxury-zoom {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.img-zoom-container:hover .img-luxury-zoom {
+  transform: scale(1.06);
+  filter: brightness(1.02);
+}
+
+/* Luxury Shimmer & Glow Effects */
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+
+  100% {
+    transform: translateX(200%) rotate(25deg);
+  }
+}
+
+.shimmer-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-sweep::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 100%);
+  animation: shimmerSweep 3.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Keyframe Micro-Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(213, 178, 99, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(213, 178, 99, 0.5);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float-slow {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Museum-Grade Minimalist Utilities & Cards */
+.hairline-border {
   border-width: 1px;
-  border-color: rgba(197, 160, 89, 0.3);
+  border-color: rgba(213, 178, 99, 0.25);
 }
 
 .bg-ivory {
-  background-color: #F5F4F0;
+  background-color: #FDFBF7;
 }
 
 .bg-obsidian {
-  background-color: #0F0F0F;
+  background-color: #121212;
 }
 
-/* Zara & Net-A-Porter High-Fashion Minimalist Buttons */
+/* Ultra-minimalist Noir & Gold Buttons */
 .btn-luxury-primary {
   display: inline-flex;
-  items-center: center;
+  align-items: center;
   justify-content: center;
-  background-color: #0F0F0F;
-  color: #FFFFFF;
-  font-weight: 600;
-  font-size: 0.7rem;
+  background-color: #121212;
+  color: #D5B263;
+  font-weight: 700;
+  font-size: 0.70rem;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  padding: 0.85rem 1.75rem;
-  border: 1px solid #0F0F0F;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.2em;
+  padding: 1rem 2.25rem;
+  border: 1px solid #D5B263;
+  border-radius: 0.75rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .btn-luxury-primary:hover {
-  background-color: #C5A059;
-  border-color: #C5A059;
-  color: #0F0F0F;
+  background-color: #D5B263;
+  color: #121212;
+  box-shadow: 0 8px 30px rgba(213, 178, 99, 0.3);
+  transform: translateY(-2px);
 }
 
 .btn-luxury-outline {
   display: inline-flex;
-  items-center: center;
+  align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: #0F0F0F;
+  color: #121212;
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 0.70rem;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  padding: 0.85rem 1.75rem;
-  border: 1px solid #0F0F0F;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.2em;
+  padding: 1rem 2.25rem;
+  border: 1px solid rgba(18, 18, 18, 0.2);
+  border-radius: 0.75rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
 
 .btn-luxury-outline:hover {
-  background-color: #0F0F0F;
-  color: #FFFFFF;
+  border-color: #D5B263;
+  color: #D5B263;
+  background-color: rgba(18, 18, 18, 0.03);
+  transform: translateY(-2px);
 }
 
-.btn-luxury-gold {
-  display: inline-flex;
-  items-center: center;
-  justify-content: center;
-  background-color: #C5A059;
-  color: #0F0F0F;
-  font-weight: 700;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  padding: 0.85rem 1.75rem;
-  border: 1px solid #C5A059;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
+/* Glassmorphism Classes */
+.glass-luxury {
+  background: rgba(253, 251, 247, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(213, 178, 99, 0.3);
 }
 
-.btn-luxury-gold:hover {
-  background-color: #0F0F0F;
-  border-color: #0F0F0F;
-  color: #C5A059;
+.glass-dark {
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(213, 178, 99, 0.3);
 }
 
-/* Glassmorphic Hairline Containers */
-.glass-quiet {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(15, 15, 15, 0.08);
+/* Card Micro-Elevations */
+.card-luxury-hover {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-quiet-dark {
-  background: rgba(15, 15, 15, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+.card-luxury-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(213, 178, 99, 0.2);
 }
 
-/* Custom Scrollbar */
+/* Sleek Luxury Gold Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAFAFA;
+  background: #FDFBF7;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0F0F0F;
+  background: #D5B263;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #121212;
 }
 
 #root {

@@ -1,31 +1,37 @@
 import React, { useState } from 'react';
 import { ShopProvider, useShop } from './context/ShopContext';
-import { AnnouncementBar } from './components/layout/AnnouncementBar';
+import ErrorBoundary from './components/common/ErrorBoundary';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/hero/HeroSection';
-import { StoryReels } from './components/home/StoryReels';
 import { ShopByCategory } from './components/home/ShopByCategory';
 import { NewArrivals } from './components/home/NewArrivals';
+import { DiscoveryFeed } from './components/home/DiscoveryFeed';
 import { TrendingEdits } from './components/home/TrendingEdits';
+import { StoryReels } from './components/home/StoryReels';
 import { PersonalizedStyleQuiz } from './components/home/PersonalizedStyleQuiz';
 import { CatalogPage } from './pages/CatalogPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { AccountPage } from './pages/AccountPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
+
+// Modals & Interactive Innovation Suites
 import { VirtualFitSuite } from './components/virtualFit/VirtualFitSuite';
 import { ProductQuickViewModal } from './components/product/ProductQuickViewModal';
 import { SizeAdvisorModal } from './components/product/SizeAdvisorModal';
 import { InstantSearchModal } from './components/search/InstantSearchModal';
 import { CartDrawer } from './components/cart/CartDrawer';
-import { OutfitMixerModal } from './components/outfitBuilder/OutfitMixerModal';
+import { TisutaAiStylistModal } from './components/ai/TisutaAiStylistModal';
+import { TisutaStyleboardModal } from './components/styleboard/TisutaStyleboardModal';
+import { ProductCompareModal } from './components/product/ProductCompareModal';
+import { NotificationDrawer } from './components/notifications/NotificationDrawer';
+import { SupportModal } from './components/support/SupportModal';
 
 function MainAppContent() {
   const [currentPage, setCurrentPage] = useState('home');
   const [pageParams, setPageParams] = useState({});
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isOutfitMixerOpen, setIsOutfitMixerOpen] = useState(false);
 
   const handleNavigatePage = (pageName, params = {}) => {
     setCurrentPage(pageName);
@@ -40,39 +46,40 @@ function MainAppContent() {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] font-sans antialiased text-[#121212] selection:bg-[#D5B263] selection:text-[#121212]">
-      {/* Top Luxury Announcement Ribbon */}
-      <AnnouncementBar />
-
-      {/* Glassmorphism Navigation Bar */}
+      {/* Sticky Global Navigation */}
       <Navbar
         onNavigatePage={handleNavigatePage}
         currentPage={currentPage}
-        onOpenOutfitMixer={() => setIsOutfitMixerOpen(true)}
       />
 
       {/* Main View Router */}
       <main>
+        {/* HOMEPAGE (Section 03, 04, 14, 15) */}
         {currentPage === 'home' && (
           <>
-            {/* Myntra Studio Story Reels */}
-            <StoryReels />
             <HeroSection onNavigatePage={handleNavigatePage} />
+            <StoryReels onSelectProduct={handleSelectProduct} />
+            <DiscoveryFeed onSelectProduct={handleSelectProduct} onNavigatePage={handleNavigatePage} />
             <ShopByCategory onNavigatePage={handleNavigatePage} />
             <NewArrivals onSelectProduct={handleSelectProduct} onNavigatePage={handleNavigatePage} />
             <TrendingEdits onNavigatePage={handleNavigatePage} />
-            <PersonalizedStyleQuiz onSelectProduct={handleSelectProduct} />
+            <PersonalizedStyleQuiz onNavigatePage={handleNavigatePage} />
           </>
         )}
 
+        {/* CATALOG (Section 05, 07) */}
         {currentPage === 'catalog' && (
           <CatalogPage
             initialCategory={pageParams.category || 'all'}
+            initialSubCategory={pageParams.subCategory || 'all'}
             initialEditTag={pageParams.editTag || null}
+            initialSearch={pageParams.search || ''}
             onSelectProduct={handleSelectProduct}
             onNavigatePage={handleNavigatePage}
           />
         )}
 
+        {/* PRODUCT DETAIL PAGE (Section 08, 09, 12, 18) */}
         {currentPage === 'product-detail' && selectedProduct && (
           <ProductDetailPage
             product={selectedProduct}
@@ -81,10 +88,12 @@ function MainAppContent() {
           />
         )}
 
+        {/* CHECKOUT (Section 20) */}
         {currentPage === 'checkout' && (
           <CheckoutPage onNavigatePage={handleNavigatePage} />
         )}
 
+        {/* VIP ACCOUNT, ORDERS, WISHLIST, RETURNS (Section 16, 22, 23, 24, 25) */}
         {currentPage === 'account' && (
           <AccountPage
             onSelectProduct={handleSelectProduct}
@@ -92,6 +101,7 @@ function MainAppContent() {
           />
         )}
 
+        {/* ENTERPRISE CONTROL CENTER ADMIN (Section 28-38, 46, 47) */}
         {currentPage === 'admin' && (
           <AdminDashboardPage />
         )}
@@ -108,15 +118,21 @@ function MainAppContent() {
       <SizeAdvisorModal />
       <InstantSearchModal onSelectProduct={handleSelectProduct} onNavigatePage={handleNavigatePage} />
       <CartDrawer onNavigateCheckout={() => handleNavigatePage('checkout')} />
-      <OutfitMixerModal isOpen={isOutfitMixerOpen} onClose={() => setIsOutfitMixerOpen(false)} />
+      <TisutaAiStylistModal onSelectProduct={handleSelectProduct} />
+      <TisutaStyleboardModal />
+      <ProductCompareModal />
+      <NotificationDrawer />
+      <SupportModal />
     </div>
   );
 }
 
 export default function App() {
   return (
-    <ShopProvider>
-      <MainAppContent />
-    </ShopProvider>
+    <ErrorBoundary>
+      <ShopProvider>
+        <MainAppContent />
+      </ShopProvider>
+    </ErrorBoundary>
   );
 }

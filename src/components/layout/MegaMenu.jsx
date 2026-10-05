@@ -44,7 +44,7 @@ export const MegaMenu = ({ category, onClose, onSelectCategory }) => {
                 },
                 {
                     title: 'Bridal & Trousseau',
-                    links: ['Velvet Lehengas', 'Embroidered Jackets', 'Kundan Accessories']
+                    links: ['Velvet Lehengas', 'Embroidered Jackets', 'Heirloom Silk Dupattas']
                 }
             ],
             promo: {
